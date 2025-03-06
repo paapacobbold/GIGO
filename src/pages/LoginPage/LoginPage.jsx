@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Add this import
+import { Link, useNavigate } from "react-router-dom"; // Add this import
 import "./LoginPage.css";
 
 import loginImage from "../../assets/images/login image.png";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login attempted", { email, password });
+    console.log("Login attempted", formData);
+    // Add your login logic here
+
+    // After successful login, navigate to dashboard
+    navigate("/dashboard");
   };
 
   return (
@@ -54,8 +61,10 @@ const LoginPage = () => {
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 required
               />
             </div>
@@ -64,8 +73,10 @@ const LoginPage = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 required
               />
               <button
