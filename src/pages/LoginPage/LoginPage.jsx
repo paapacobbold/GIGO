@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Add this import
+import { useAuth } from "../../context/AuthContext";
 import "./LoginPage.css";
 
 import loginImage from "../../assets/images/login image.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login attempted", formData);
-    // Add your login logic here
-
-    // After successful login, navigate to dashboard
-    navigate("/dashboard");
+    // Your login logic here
+    try {
+      // After successful login
+      login(); // Update auth state
+      navigate("/overview"); // Redirect to overview page
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
@@ -56,7 +61,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLogin}>
             <div className="input-container">
               <input
                 type="email"
