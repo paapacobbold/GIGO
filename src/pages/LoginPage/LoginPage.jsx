@@ -82,15 +82,10 @@ const LoginPage = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
+                onFocus={() => setShowPassword(false)}
+                onBlur={() => setShowPassword(false)}
                 required
               />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "👁️" : "👁️‍🗨️"}
-              </button>
             </div>
 
             <div className="forgot-password">
