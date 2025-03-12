@@ -11,17 +11,39 @@ import { Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Subscription from "./pages/Subscription/SubscriptionPage";
 import About from "./pages/About/AboutPage";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/route/ProtectedRoute";
 
 library.add(fas);
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Subscription />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage/>}/>
-      <Route path="/dashboard" element={<Dashboard/>}/>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/overview"
+          element={
+            <ProtectedRoute>
+              <Overview />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/report-waste" element={<ReportWaste />} />
+        <Route path="/subscription" element={<Subscription />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </AuthProvider>
   );
 };
 

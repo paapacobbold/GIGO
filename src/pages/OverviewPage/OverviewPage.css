@@ -25,7 +25,8 @@
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   --border-radius-sm: 0.125rem;
   --border-radius: 0.25rem;
@@ -39,8 +40,8 @@
 /* Base styles */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   line-height: 1.5;
   color: var(--color-gray-900);
 }
@@ -48,8 +49,11 @@ body {
 /* App Container */
 .app-container {
   display: flex;
-  height: 100vh;
-  width: 100%;    
+  max-width: fit-content;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* Dark Mode */
@@ -76,12 +80,15 @@ body {
 /* Sidebar */
 .sidebar {
   width: 290px;
+  min-width: 290px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: var(--bg-sidebar);
   border-right: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
+  z-index: 100;
+  overflow-y: auto;
 }
 
 .logo {
@@ -222,24 +229,22 @@ body {
 
 /* Main Content */
 .main-content {
-  /* learn on how positions work */
-  position: relative;
-  flex: 1;
+  width: calc(100% - 290px);
+  min-height: 100vh;
+  margin-left: 290px; /* Match sidebar width */
   background-color: var(--bg-main);
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 /* Header */
 .header {
-  height: 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: var(--bg-header);
+  padding: 1rem 2rem;
   border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
   width: 100%;
-  position: relative;
 }
 
 .search-container {
@@ -275,7 +280,6 @@ body {
   justify-content: flex-end;
   gap: 0.5rem;
   margin-left: 3rem;
-  
 }
 
 .notification-button {
@@ -293,14 +297,18 @@ body {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--border-radius-full);
-  background: linear-gradient(to right, var(--color-purple-500), var(--color-pink-500));
+  background: linear-gradient(
+    to right,
+    var(--color-purple-500),
+    var(--color-pink-500)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-white);
 }
 
-.main-content{
+.main-content {
   width: 100%;
 }
 
@@ -308,5 +316,171 @@ body {
 .content {
   flex: 1;
   padding: 1.5rem;
-  
+}
+
+/* Dashboard content */
+.dashboard-content {
+  padding: 2rem;
+  max-width: 1280px;
+  margin: 0 2rem 0 0; /* Right margin only */
+  width: calc(100% - 2rem); /* Adjust width to account for right margin */
+}
+
+/* Banner */
+.banner-container {
+  margin-bottom: 32px;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 300px;
+  box-shadow: var(--shadow);
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Process section */
+.process-section {
+  padding: 50px 0;
+  width: 100%;
+}
+
+.section-title {
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Update Process Steps Layout */
+.process-steps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.process-step {
+  flex: 1;
+  max-width: calc(
+    25% - 1.125rem
+  ); /* Ensures equal width for 4 items with gap */
+  min-width: 220px;
+  background: var(--bg-sidebar);
+  border-radius: var(--border-radius-xl);
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.process-step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-green-50);
+}
+
+.dark-mode .process-step:hover {
+  background-color: var(--color-green-900);
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray-100);
+  border-radius: var(--border-radius-full);
+}
+
+.dark-mode .icon-circle {
+  background-color: var(--color-gray-800);
+}
+
+.process-icon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.step-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-green-700);
+  margin: 16px 0;
+}
+
+.dark-mode .step-title {
+  color: var(--color-green-400);
+}
+
+.step-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+/* Responsive styles */
+@media (max-width: 1400px) {
+  .process-steps {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .process-steps::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .process-step {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-content {
+    padding: 24px;
+    margin: 0 1.5rem 0 0;
+    width: calc(100% - 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+    margin: 0 1rem 0 0;
+    width: calc(100% - 1rem);
+  }
+
+  .process-step {
+    flex-basis: 100%;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .banner-container {
+    height: 200px;
+  }
 }
