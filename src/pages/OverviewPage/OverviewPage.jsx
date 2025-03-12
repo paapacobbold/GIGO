@@ -1,24 +1,8 @@
 import { useState } from "react";
-import {
-  Bell,
-  Calendar,
-  ChevronDown,
-  CircleDot,
-  FileUp,
-  HelpCircle,
-  Info,
-  Layout,
-  MessageSquare,
-  Moon,
-  PackageOpen,
-  Recycle,
-  Search,
-  Settings,
-  Sun,
-  User,
-} from "lucide-react";
+import { Bell, Search } from "lucide-react";
+import Sidebar from "../../components/sidebar/sidebar";
 import "./OverviewPage.css";
-import logoIcon from "../../assets/images/Logo Icon.svg";
+// import logoIcon from "../../assets/images/Logo Icon.svg";
 import plantImage from "../../assets/images/picture.png";
 import group4 from "../../assets/images/Group 4.png";
 import group5 from "../../assets/images/Group 5.png";
@@ -28,114 +12,42 @@ import group7 from "../../assets/images/Group 7.png";
 export default function Overview() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Process steps data
+  // Updated Process steps data
   const processSteps = [
     {
       icon: group4,
       title: "Pickup",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Senectus dolor aliquam dolor nisi duis ornare lacus. At ullamcorper ut id pharetra sapien in commodo. Morbi lobortis cursus nec vel.",
+        "We help you get rid of waste easily with different types of bins and collection services. Our bins are designed to keep waste organized and clean. We also provide guidance on what can and cannot be recycled.",
     },
     {
       icon: group5,
       title: "Collection",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Senectus dolor aliquam dolor nisi duis ornare lacus. At ullamcorper ut id pharetra sapien in commodo. Morbi lobortis cursus nec vel.",
+        "Our efficient collection system ensures timely waste pickup from your location. We use modern vehicles and tracking technology to optimize routes. Our trained staff handles waste safely and professionally.",
     },
     {
       icon: group6,
       title: "Recycling",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Senectus dolor aliquam dolor nisi duis ornare lacus. At ullamcorper ut id pharetra sapien in commodo. Morbi lobortis cursus nec vel.",
+        "We turn old things into new things to save the planet and reduce waste. Our recycling program helps conserve natural resources and reduces landfill waste. We partner with local recycling facilities to ensure responsible processing.",
     },
     {
       icon: group7,
       title: "Cleanup",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Senectus dolor aliquam dolor nisi duis ornare lacus. At ullamcorper ut id pharetra sapien in commodo. Morbi lobortis cursus nec vel.",
+        "We keep public places clean and beautiful so everyone can enjoy them. Our team uses eco-friendly cleaning products and equipment to protect the environment. We also work with local communities to promote cleanliness and sustainability.",
     },
   ];
 
   return (
     <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
-      {/* Sidebar */}
-      <div className="sidebar">
-        {/* Logo */}
-        <div className="logo">
-          <div className="logo-icon">
-            <img src={logoIcon} alt="logo" width="50" height="50" />
-          </div>
-          <span className="logo-text">GIGO</span>
-        </div>
+      <Sidebar
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        activePage="overview"
+      />
 
-        {/* Navigation */}
-        <div className="nav-container">
-          <div className="nav-section">
-            <p className="nav-section-title">Home</p>
-            <NavItem icon={<Layout size={18} />} label="Overview" active />
-            <NavItem icon={<Recycle size={18} />} label="Recycling Tips" />
-            <NavItem icon={<User size={18} />} label="Profile" />
-          </div>
-
-          <div className="nav-section">
-            <p className="nav-section-title">Users</p>
-            <NavItem icon={<MessageSquare size={18} />} label="Chat" />
-            <NavItem icon={<FileUp size={18} />} label="Report Waste" />
-            <NavItem icon={<Calendar size={18} />} label="Pickup Schedule" />
-            <NavItem icon={<PackageOpen size={18} />} label="Subscription" />
-          </div>
-
-          <div className="nav-section">
-            <p className="nav-section-title">More</p>
-            <NavItem
-              icon={<CircleDot size={18} className="red-icon" />}
-              label="Locate Facilities"
-              iconColor="red-icon"
-            />
-            <NavItem
-              icon={<CircleDot size={18} className="blue-icon" />}
-              label="Payment"
-              iconColor="blue-icon"
-            />
-            <NavItem
-              icon={<CircleDot size={18} className="purple-icon" />}
-              label="Report History"
-              iconColor="purple-icon"
-            />
-          </div>
-
-          <div className="nav-section preferences">
-            <p className="nav-section-title">Preferences</p>
-            <NavItem
-              icon={<Settings size={18} />}
-              label="Settings"
-              hasDropdown
-            />
-            <NavItem icon={<Info size={18} />} label="About" />
-            <NavItem icon={<HelpCircle size={18} />} label="Help Center" />
-          </div>
-
-          {/* Theme Toggle */}
-          <div className="theme-toggle">
-            <button
-              className={`theme-button ${!isDarkMode ? "active" : ""}`}
-              onClick={() => setIsDarkMode(false)}
-            >
-              <Sun size={16} />
-              <span>Light</span>
-            </button>
-            <button
-              className={`theme-button ${isDarkMode ? "active" : ""}`}
-              onClick={() => setIsDarkMode(true)}
-            >
-              <Moon size={16} />
-              <span>Dark</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="main-content">
         {/* Header */}
         <header className="header">
@@ -191,15 +103,6 @@ export default function Overview() {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-function NavItem({ icon, label, active, hasDropdown, iconColor }) {
-  return (
-    <div className={`nav-item ${active ? "active" : ""} ${iconColor || ""}`}>
-      <span className="nav-icon">{icon}</span>
-      <span className="nav-label">{label}</span>
-      {hasDropdown && <ChevronDown size={16} className="dropdown-icon" />}
     </div>
   );
 }

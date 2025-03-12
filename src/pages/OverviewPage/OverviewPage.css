@@ -144,10 +144,13 @@ body {
   color: var(--text-color);
   cursor: pointer;
   transition: background-color 0.2s;
+  color: inherit;
+  text-decoration: none;
 }
 
 .nav-item:hover {
   background-color: var(--color-gray-100);
+  text-decoration: none;
 }
 
 .dark-mode .nav-item:hover {
