@@ -9,11 +9,12 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Subscription from "./pages/Subscription/SubscriptionPage";
 import About from "./pages/About/AboutPage";
+import Payment from "./pages/Payment/PaymentPage";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Subscription/>} />
+      <Route path="/" element={<Payment/>} />
       {/* <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/> */}
