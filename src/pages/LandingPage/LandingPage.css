@@ -14,7 +14,7 @@ body {
 /* Keep the Navigation Bar on Top */
 nav {
     display: flex;
-    padding: 20px 6%;
+    padding: 5px 6px;
     justify-content: space-between;
     align-items: center;
     position: fixed;  /* Fix the nav bar to the top */
@@ -106,6 +106,8 @@ nav img{
 }
 
 .home-image img {
+    margin-top: 70px;
+    position: relative;
     width: 95%;
     height: auto;
     max-width: 1200px;
