@@ -1,0 +1,40 @@
+.custom-switch-container {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    background-color: #006401;
+  
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .custom-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 17px;
+    transition: all 0.3s ease;
+    width: 90px;
+    height: 36px;
+  }
+  
+  .custom-switch.selected {
+    background-color: #B0ECC1;
+    color: #f1f5f9;
+  }
+  
+  .custom-switch:first-child.selected {
+    background-color: #e2e8f0;
+    color: #334155;
+  }
