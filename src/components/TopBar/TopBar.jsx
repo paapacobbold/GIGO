@@ -1,7 +1,7 @@
 import React from 'react';
 import './TopBar.css';
 import { Bell, Search } from 'lucide-react';
-
+import plantImage from "../../assets/images/picture.png";
 
 const TopBar = () => {
   return (
@@ -19,15 +19,15 @@ const TopBar = () => {
             <Bell className="bell-icon" size={25}/>
             </div>
             <div className="profile">
-            <img 
-                src="" 
-                alt="" 
-                className="profile-pic" 
-            />
-            <div className="profile-info">
-                <span className="name">John Doe</span>
-                <span className="role">User</span>
-            </div>
+              <img 
+                  src={plantImage}
+                  alt="" 
+                  className="profile-pic" 
+              />
+              <div className="profile-info">
+                  <span className="name">John Doe</span>
+                  <span className="role">User</span>
+              </div>
             </div>
         </div>
     </div>

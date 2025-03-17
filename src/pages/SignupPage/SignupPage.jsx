@@ -25,11 +25,9 @@ const SignupPage = () => {
         </p>
 
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" required />
+          <input type="email" id="email" placeholder='Email'required />
 
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" required />
+          <input type="password" id="password" placeholder='Password' required />
 
           <div className="terms">
             <input type="checkbox" id="terms" required />
@@ -57,7 +55,7 @@ const SignupPage = () => {
         </button>
       </div>
       <div className="image-section">
-        <img src={signupImage} alt="sign up image" />
+        <img src={signupImage} alt="sign up image" className='signin-image' />
       </div>
     </div>
   );

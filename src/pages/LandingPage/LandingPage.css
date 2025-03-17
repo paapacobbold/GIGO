@@ -119,7 +119,7 @@ nav img{
     width: 100%;
 }
 .working-process h1{
-    color: black;
+    color: green;
     font-weight:bold;
     font-family:serif;
     font-size: 40px;
@@ -181,6 +181,7 @@ nav img{
     font-weight: bold;
     margin-bottom: 20px;
     padding-bottom: 20px;
+    color: green;
 }
 
 .os-col {

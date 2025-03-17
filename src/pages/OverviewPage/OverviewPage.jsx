@@ -9,6 +9,7 @@ import group5 from "../../assets/images/Group 5.png";
 import group6 from "../../assets/images/Group 6.png";
 import group7 from "../../assets/images/Group 7.png";
 import TopBar from "../../components/TopBar/TopBar";
+import "./OverviewPage.css"
 
 export default function Overview() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -42,16 +43,16 @@ export default function Overview() {
   ];
 
   return (
-    <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
+    <div className={`app-container ${isDarkMode ? "dark-mode" : " "}`}>
       <Sidebar
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
         activePage="overview"
       />
-
+      <TopBar/>
       <div className="main-content">
         {/* Header */}
-        <header className="header">
+        {/* <header className="header">
           <div className="search-container">
             <Search className="search-icon" size={20} />
             <input
@@ -69,7 +70,7 @@ export default function Overview() {
               <span>👤</span>
             </div>
           </div>
-        </header>
+        </header> */}
 
         {/* Dashboard Content */}
         <div className="dashboard-content">

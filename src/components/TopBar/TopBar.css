@@ -1,17 +1,17 @@
 /* Top Bar Container */
 .top-bar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 290px; /* Adjust for sidebar width */
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    z-index: 99;
-  }
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 290px; /* Adjust for sidebar width */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 99;
+}
   
   /* Search Bar */
   /* .search-container {
@@ -71,9 +71,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-right: 15px;
   }
   
-  .profile-pic {
+  .profile .profile-pic {
     width: 40px;
     height: 40px;
     border-radius: 50%;
