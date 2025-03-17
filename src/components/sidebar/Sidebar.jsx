@@ -1,7 +1,5 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Bell,
   Calendar,
   ChevronDown,
   CircleDot,
@@ -10,15 +8,14 @@ import {
   Info,
   Layout,
   MessageSquare,
-  Moon,
   PackageOpen,
   Recycle,
   Settings,
-  Sun,
   User,
 } from "lucide-react";
 import "./Sidebar.css";
 import logoIcon from "../../assets/images/Logo Icon.svg";
+import CustomSwitchSelector from "../Switch/CustomSwitchSelector";
 
 const NavItem = ({ icon, label, active, hasDropdown, iconColor }) => {
   const getPath = (label) => {
@@ -79,10 +76,10 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
       <div className="nav-container">
         <div className="nav-section">
           <p className="nav-section-title">Home</p>
-          <NavItem 
-            icon={<Layout size={18} />} 
-            label="Overview" 
-            active={activePage === "overview"} 
+          <NavItem
+            icon={<Layout size={18} />}
+            label="Overview"
+            active={activePage === "overview"}
           />
           <NavItem icon={<Recycle size={18} />} label="Recycling Tips" />
           <NavItem icon={<User size={18} />} label="Profile" />
@@ -93,9 +90,9 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
           <NavItem icon={<MessageSquare size={18} />} label="Chat" />
           <NavItem icon={<FileUp size={18} />} label="Report Waste" />
           <NavItem icon={<Calendar size={18} />} label="Pickup Schedule" />
-          <NavItem 
-            icon={<PackageOpen size={18} />} 
-            label="Subscription" 
+          <NavItem
+            icon={<PackageOpen size={18} />}
+            label="Subscription"
             active={activePage === "subscription"}
           />
         </div>
@@ -121,30 +118,13 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
 
         <div className="nav-section preferences">
           <p className="nav-section-title">Preferences</p>
-          <NavItem
-            icon={<Settings size={18} />}
-            label="Settings"
-            hasDropdown
-          />
+          <NavItem icon={<Settings size={18} />} label="Settings" hasDropdown />
           <NavItem icon={<Info size={18} />} label="About" />
           <NavItem icon={<HelpCircle size={18} />} label="Help Center" />
         </div>
 
-        <div className="theme-toggle">
-          <button
-            className={`theme-button ${!isDarkMode ? "active" : ""}`}
-            onClick={() => setIsDarkMode(false)}
-          >
-            <Sun size={16} />
-            <span>Light</span>
-          </button>
-          <button
-            className={`theme-button ${isDarkMode ? "active" : ""}`}
-            onClick={() => setIsDarkMode(true)}
-          >
-            <Moon size={16} />
-            <span>Dark</span>
-          </button>
+        <div className="theme-toggle-container">
+          <CustomSwitchSelector isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
         </div>
       </div>
     </div>

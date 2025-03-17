@@ -40,6 +40,8 @@
   padding: 0.5rem;
   overflow-y: auto;
   margin-left: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .nav-section {
@@ -113,48 +115,10 @@
   color: var(--color-purple-500);
 }
 
-/* Theme Toggle */
-.theme-toggle {
-  height: 40px;
-  width: 85%;
-  background-color: var(--color-green-100);
-  border-radius: var(--border-radius-full);
+/* Theme Toggle Container */
+.theme-toggle-container {
+  padding: 0 0.75rem;
   margin: 1rem auto;
-}
-
-.dark-mode .theme-toggle {
-  background-color: var(--color-gray-800);
-}
-
-.theme-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--border-radius-full);
-  border: none;
-  background: none;
-  color: var(--color-gray-600);
-  cursor: pointer;
-  font-size: 0.875rem;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.dark-mode .theme-button {
-  color: var(--color-gray-300);
-}
-
-.theme-button.active {
-  background-color: var(--color-white);
-  color: var(--text-color);
-  box-shadow: var(--shadow-sm);
-}
-
-.dark-mode .theme-button.active {
-  background-color: var(--color-gray-700);
-  color: var(--color-white);
 }
 
 /* Responsive Styles */
