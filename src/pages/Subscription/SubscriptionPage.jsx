@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Bell, Search } from "lucide-react";
 import Sidebar from "../../components/sidebar/sidebar";
 import "./SubscriptionPage.css";
+import TopBar from "../../components/TopBar/TopBar";
 // import logoIcon from "../../assets/images/Logo Icon.svg";
 
 export default function Subscription() {
@@ -60,9 +61,10 @@ export default function Subscription() {
         activePage="subscription"
       />
 
-      <div className="main-content">
+      <TopBar/>
+      <div className="main-content1">
         {/* Header */}
-        <header className="header">
+        {/* <header className="header">
           <div className="search-container">
             <Search className="search-icon" size={20} />
             <input
@@ -80,8 +82,8 @@ export default function Subscription() {
               <span>👤</span>
             </div>
           </div>
-        </header>
-        <main className="content">
+        </header> */}
+        <main className="content1">
           <div className="pricing-table">
             {pricingTiers.map((tier, index) => (
               <div key={index} className="pricing-card">

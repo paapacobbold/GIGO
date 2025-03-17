@@ -14,7 +14,7 @@ body {
 /* Keep the Navigation Bar on Top */
 nav {
     display: flex;
-    padding: 20px 6%;
+    padding: 5px 6px;
     justify-content: space-between;
     align-items: center;
     position: fixed;  /* Fix the nav bar to the top */
@@ -106,6 +106,8 @@ nav img{
 }
 
 .home-image img {
+    margin-top: 70px;
+    position: relative;
     width: 95%;
     height: auto;
     max-width: 1200px;
@@ -117,7 +119,7 @@ nav img{
     width: 100%;
 }
 .working-process h1{
-    color: black;
+    color: green;
     font-weight:bold;
     font-family:serif;
     font-size: 40px;
@@ -179,6 +181,7 @@ nav img{
     font-weight: bold;
     margin-bottom: 20px;
     padding-bottom: 20px;
+    color: green;
 }
 
 .os-col {

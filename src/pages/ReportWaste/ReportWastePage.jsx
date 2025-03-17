@@ -1,116 +1,27 @@
-"use client"
-
 import { useState } from "react"
 import {
-  Bell,
-  Calendar,
   ChevronDown,
-  CircleDot,
   FileUp,
-  HelpCircle,
-  Info,
-  Layout,
-  MessageSquare,
-  Moon,
-  PackageOpen,
-  Recycle,
-  Search,
-  Settings,
-  Sun,
-  User,
 } from "lucide-react"
 import "./ReportWastePage.css"
-import logoIcon from "../../assets/images/Logo Icon.svg";
+import TopBar from "../../components/TopBar/TopBar";
+import Sidebar from "../../components/sidebar/sidebar";
 
 export default function ReportWaste() {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   return (
     <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
-      {/* Sidebar */}
-      <div className="sidebar">
-        {/* Logo */}
-        <div className="logo">
-          <div className="logo-icon">
-            <img src={logoIcon} alt="logo" width="50" height="50" />
-          </div>
-          <span className="logo-text">GIGO</span>
-        </div>
+      <Sidebar
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        activePage="subscription"
+      />
 
-        {/* Navigation */}
-        <div className="nav-container">
-          <div className="nav-section">
-            <p className="nav-section-title">Home</p>
-            <NavItem icon={<Layout size={18} />} label="Overview" />
-            <NavItem icon={<Recycle size={18} />} label="Recycling Tips" />
-            <NavItem icon={<User size={18} />} label="Profile" />
-          </div>
-
-          <div className="nav-section">
-            <p className="nav-section-title">Users</p>
-            <NavItem icon={<MessageSquare size={18} />} label="Chat" />
-            <NavItem icon={<FileUp size={18} />} label="Report Waste" active />
-            <NavItem icon={<Calendar size={18} />} label="Pickup Schedule" />
-            <NavItem icon={<PackageOpen size={18} />} label="Subscription" />
-          </div>
-
-          <div className="nav-section">
-            <p className="nav-section-title">More</p>
-            <NavItem
-              icon={<CircleDot size={18} className="red-icon" />}
-              label="Locate Facilities"
-              iconColor="red-icon"
-            />
-            <NavItem icon={<CircleDot size={18} className="blue-icon" />} label="Payment" iconColor="blue-icon" />
-            <NavItem
-              icon={<CircleDot size={18} className="purple-icon" />}
-              label="Report History"
-              iconColor="purple-icon"
-            />
-          </div>
-
-          <div className="nav-section preferences">
-            <p className="nav-section-title">Preferences</p>
-            <NavItem icon={<Settings size={18} />} label="Settings" hasDropdown />
-            <NavItem icon={<Info size={18} />} label="About" />
-            <NavItem icon={<HelpCircle size={18} />} label="Help Center" />
-          </div>
-
-          {/* Theme Toggle */}
-          <div className="theme-toggle">
-            <button className={`theme-button ${!isDarkMode ? "active" : ""}`} onClick={() => setIsDarkMode(false)}>
-              <Sun size={16} />
-              <span>Light</span>
-            </button>
-            <button className={`theme-button ${isDarkMode ? "active" : ""}`} onClick={() => setIsDarkMode(true)}>
-              <Moon size={16} />
-              <span>Dark</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <TopBar/>
       {/* Main Content */}
         <div className="main-content">
-            {/* Header */}
-            <header className="header">
-                <div className="search-container">
-                    <Search className="search-icon" size={20} />
-                    <input type="text" placeholder="Mother Earth Day is coming..." className="search-input"  />
-                </div>
-
-                <div className="header-actions">
-                    <button className="notification-button">
-                    <Bell size={20} />
-                    </button>
-                    <div className="avatar">
-                    <span>👤</span>
-                    </div>
-                </div>
-            </header>
-
-            {/* Main Content */}
-            <main className="content">
+          <main className="content">
             {/* Upload Area */}
             <div className="upload-area">
                 <div className="upload-icon-container">
@@ -165,7 +76,17 @@ export default function ReportWaste() {
                     </div>
                 </div>
             </div>
-            </main>
+            <div className="text-area">
+                  <label className="form-label-p">Pickup Instructions</label>
+                    <div className="text-input">
+                      <textarea rows= "10" placeholder="Text" required/>
+                    </div>
+            </div>
+            <div className="Bottom-btns">
+                  <button className="Submit-btn">Submit Report</button>
+                  <button className="Cancel-btn">Cancel</button>
+            </div>
+          </main>
         </div>
     </div>
   )

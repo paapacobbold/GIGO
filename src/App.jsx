@@ -13,7 +13,8 @@ import Subscription from "./pages/Subscription/SubscriptionPage";
 import About from "./pages/About/AboutPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/route/ProtectedRoute";
-
+import Payment from "./pages/Payment/PaymentPage"
+import LocateFacilities from "./pages/LocateFacilities/LocateFacilitiesPage";
 library.add(fas);
 
 const App = () => {
@@ -41,7 +42,9 @@ const App = () => {
         />
         <Route path="/report-waste" element={<ReportWaste />} />
         <Route path="/subscription" element={<Subscription />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/payment" element={<Payment/>}/>
+        <Route path="/facilities" element={<LocateFacilities/>}/>
       </Routes>
     </AuthProvider>
   );
