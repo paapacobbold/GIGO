@@ -15,18 +15,19 @@
 body {
   background-color: var(--light-gray);
   display: flex;
-  justify-content: center;
+  justify-content:center ;
   align-items: center;
   min-height: 100vh;
+  width: 100%;
 }
 
 .login-container {
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
-  padding: 20px;
+  padding: 10px;
+  margin-left: 40%;
 }
 
 .login-wrapper {
@@ -48,14 +49,16 @@ body {
 
 h1 {
   color: var(--primary-green);
-  font-size: 30px;
+  font-size: 50px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .signup-text {
   color: var(--text-gray);
   margin-bottom: 20px;
   font-size: 14px;
+  text-align: center;
 }
 
 .signup-link {
@@ -199,8 +202,6 @@ form {
   text-align: center;
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .character-wrapper {

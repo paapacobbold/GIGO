@@ -1,0 +1,18 @@
+.main-content {
+    width: calc(100% - 290px);
+    min-height: 100vh;
+    margin-left: 290px; /* Match sidebar width */
+    background-color: var(--bg-main);
+    position: relative;
+    margin-top: 60px;  
+    
+  }
+  .locate-facilities-content{
+    padding: 2rem;
+    max-width: 1380px;
+    margin: 0 2rem 0 0; /* Right margin only */
+    width: calc(100% - 2rem); /*Adjust width to account for right margin*/
+    margin-left: 10px;
+    margin-top: 15px;
+    background-color: yellow;
+  }

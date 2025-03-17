@@ -1,3 +1,9 @@
+:root {
+    --primary-green: #15803d;
+    --light-gray: #f1f5f9;
+    --text-gray: #64748b;
+    --border-gray: #e2e8f0;
+  }
 * {
     margin: 0;
     padding: 0;
@@ -15,14 +21,15 @@
 
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
     background: #fff;
-    padding: 70px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 25%;
 }
 
 .form-section {
@@ -33,12 +40,14 @@
     font-size: 30px;
     font-weight: 700;
     margin-left: 25px;
+    text-align: left;
 }
 
 .sub-text {
     font-size: 14px;
     margin: 5px 0 20px;
     margin-left: 45px;
+    text-align: left;
 }
 
 .sub-text a {
@@ -181,6 +190,7 @@ input {
     object-fit: cover;
     border-radius: 10px;
 }
+
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
