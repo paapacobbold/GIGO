@@ -322,86 +322,94 @@ const Recycling = () => {
       />
       <TopBar />
       <div className="recycling-container">
-        <div className="recycling-header">
-          <h1>Recycling Tips</h1>
-          <p>
-            Small changes in your recycling habits can make a big difference for
-            our planet.
-          </p>
-        </div>
+        <div className="content2">
+          <div className="recycling-header">
+            <h1>Recycling Tips</h1>
+            <p>
+              Small changes in your recycling habits can make a big difference
+              for our planet.
+            </p>
+          </div>
 
-        <div className="category-tabs">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className={`category-tab ${
-                activeCategory === category.id ? "active" : ""
-              }`}
-              onClick={() => setActiveCategory(category.id)}
-            >
-              <span className="category-icon">{renderIcon(category.icon)}</span>
-              <span>{category.name}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="tips-container">
-          <div className="tips-grid">
-            {tips[activeCategory].map((tip, index) => (
-              <div className="tip-card" key={index}>
-                <h3>{tip.title}</h3>
-                <p>{tip.description}</p>
-                <div className="tip-impact">
-                  <span className="impact-label">Impact:</span> {tip.impact}
-                </div>
-              </div>
+          <div className="category-tabs">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                className={`category-tab ${
+                  activeCategory === category.id ? "active" : ""
+                }`}
+                onClick={() => setActiveCategory(category.id)}
+              >
+                <span className="category-icon">
+                  {renderIcon(category.icon)}
+                </span>
+                <span>{category.name}</span>
+              </button>
             ))}
           </div>
-        </div>
 
-        <div className="recycling-facts">
-          <h2>Did You Know?</h2>
-          <div className="facts-grid">
-            <div className="fact-card">
-              <div className="fact-icon plastic-icon">
-                {renderIcon("bottle")}
-              </div>
-              <div className="fact-content">
-                <h3>Plastic</h3>
-                <p>
-                  It takes up to 500 years for plastic to decompose in
-                  landfills.
-                </p>
-              </div>
+          <div className="tips-container">
+            <div className="tips-grid">
+              {tips[activeCategory].map((tip, index) => (
+                <div className="tip-card" key={index}>
+                  <h3>{tip.title}</h3>
+                  <p>{tip.description}</p>
+                  <div className="tip-impact">
+                    <span className="impact-label">Impact:</span> {tip.impact}
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="fact-card">
-              <div className="fact-icon paper-icon">{renderIcon("paper")}</div>
-              <div className="fact-content">
-                <h3>Paper</h3>
-                <p>
-                  Recycling one ton of paper saves 17 trees and 7,000 gallons of
-                  water.
-                </p>
+          </div>
+
+          <div className="recycling-facts">
+            <h2>Did You Know?</h2>
+            <div className="facts-grid">
+              <div className="fact-card">
+                <div className="fact-icon plastic-icon">
+                  {renderIcon("bottle")}
+                </div>
+                <div className="fact-content">
+                  <h3>Plastic</h3>
+                  <p>
+                    It takes up to 500 years for plastic to decompose in
+                    landfills.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="fact-card">
-              <div className="fact-icon metal-icon">{renderIcon("can")}</div>
-              <div className="fact-content">
-                <h3>Aluminum</h3>
-                <p>
-                  Recycling aluminum uses 95% less energy than producing new
-                  aluminum.
-                </p>
+              <div className="fact-card">
+                <div className="fact-icon paper-icon">
+                  {renderIcon("paper")}
+                </div>
+                <div className="fact-content">
+                  <h3>Paper</h3>
+                  <p>
+                    Recycling one ton of paper saves 17 trees and 7,000 gallons
+                    of water.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="fact-card">
-              <div className="fact-icon glass-icon">{renderIcon("glass")}</div>
-              <div className="fact-content">
-                <h3>Glass</h3>
-                <p>
-                  Glass can be recycled endlessly without any loss in quality or
-                  purity.
-                </p>
+              <div className="fact-card">
+                <div className="fact-icon metal-icon">{renderIcon("can")}</div>
+                <div className="fact-content">
+                  <h3>Aluminum</h3>
+                  <p>
+                    Recycling aluminum uses 95% less energy than producing new
+                    aluminum.
+                  </p>
+                </div>
+              </div>
+              <div className="fact-card">
+                <div className="fact-icon glass-icon">
+                  {renderIcon("glass")}
+                </div>
+                <div className="fact-content">
+                  <h3>Glass</h3>
+                  <p>
+                    Glass can be recycled endlessly without any loss in quality
+                    or purity.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

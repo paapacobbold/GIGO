@@ -82,6 +82,121 @@ export default function Overview() {
               ))}
             </div>
           </div>
+          {/* eco impact */}
+          <div className="impact-container">
+            <div className="impact-content">
+              <div className="impact-text">
+                <h2 className="impact-title">Our Environmental Impact</h2>
+                <p>
+                  Every action we take today shapes our planet's tomorrow.
+                  Through sustainable waste management practices, we're helping
+                  to preserve natural resources, reduce pollution, and create a
+                  healthier environment for all.
+                </p>
+                <ul className="impact-list">
+                  <li>Reduced landfill waste by over 10,000 tons annually</li>
+                  <li>
+                    Decreased carbon emissions through efficient collection
+                    routes
+                  </li>
+                  <li>
+                    Conserved natural resources through comprehensive recycling
+                    programs
+                  </li>
+                  <li>
+                    Prevented harmful chemicals from entering soil and water
+                    systems
+                  </li>
+                </ul>
+              </div>
+
+              <div className="impact-visual">
+                <div className="impact-chart">
+                  <div className="chart-bar">
+                    <div className="bar-fill" style={{ height: "75%" }}>
+                      <span className="bar-label">75%</span>
+                    </div>
+                    <span className="bar-title">Recycling Rate</span>
+                  </div>
+
+                  <div className="chart-bar">
+                    <div className="bar-fill" style={{ height: "60%" }}>
+                      <span className="bar-label">60%</span>
+                    </div>
+                    <span className="bar-title">Carbon Reduction</span>
+                  </div>
+
+                  <div className="chart-bar">
+                    <div className="bar-fill" style={{ height: "85%" }}>
+                      <span className="bar-label">85%</span>
+                    </div>
+                    <span className="bar-title">Waste Diversion</span>
+                  </div>
+
+                  <div className="chart-bar">
+                    <div className="bar-fill" style={{ height: "90%" }}>
+                      <span className="bar-label">90%</span>
+                    </div>
+                    <span className="bar-title">Customer Satisfaction</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* misson statement */}
+          <div className="mission-container">
+            <div className="mission-content">
+              <h2 className="mission-title">Growing a Greener Tomorrow</h2>
+
+              <div className="mission-text">
+                <p>
+                  At Garbage In Garbage Out, we believe that every small action
+                  contributes to a sustainable future. Just as a single seedling
+                  can grow into a mighty tree, our commitment to responsible
+                  waste management is creating lasting positive change for our
+                  environment and communities.
+                </p>
+              </div>
+
+              <div className="mission-stats">
+                <div className="stat-item">
+                  <span className="stat-number">10K+</span>
+                  <span className="stat-label">Tons of Waste Recycled</span>
+                </div>
+
+                <div className="stat-item">
+                  <span className="stat-number">500+</span>
+                  <span className="stat-label">Communities Served</span>
+                </div>
+
+                <div className="stat-item">
+                  <span className="stat-number">85%</span>
+                  <span className="stat-label">
+                    Waste Diverted from Landfills
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* cta banner */}
+          <div className="cta-container">
+            <div className="cta-content">
+              <h2 className="cta-title">Join Us in Making a Difference</h2>
+              <p className="cta-text">
+                Every sustainable choice matters. Partner with us to create a
+                cleaner, greener future for generations to come.
+              </p>
+              <div className="cta-buttons">
+                <a href="#contact" className="cta-button primary">
+                  Get Started
+                </a>
+                <a href="#learn-more" className="cta-button secondary">
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
