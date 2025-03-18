@@ -9,7 +9,7 @@ import group5 from "../../assets/images/Group 5.png";
 import group6 from "../../assets/images/Group 6.png";
 import group7 from "../../assets/images/Group 7.png";
 import TopBar from "../../components/TopBar/TopBar";
-import "./OverviewPage.css"
+import "./OverviewPage.css";
 
 export default function Overview() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -49,29 +49,8 @@ export default function Overview() {
         setIsDarkMode={setIsDarkMode}
         activePage="overview"
       />
-      <TopBar/>
+      <TopBar />
       <div className="main-content">
-        {/* Header */}
-        {/* <header className="header">
-          <div className="search-container">
-            <Search className="search-icon" size={20} />
-            <input
-              type="text"
-              placeholder="Mother Earth Day is coming..."
-              className="search-input"
-            />
-          </div>
-
-          <div className="header-actions">
-            <button className="notification-button">
-              <Bell size={20} />
-            </button>
-            <div className="avatar">
-              <span>👤</span>
-            </div>
-          </div>
-        </header> */}
-
         {/* Dashboard Content */}
         <div className="dashboard-content">
           {/* Banner Image */}

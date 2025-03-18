@@ -124,7 +124,7 @@ const LandingPage = () => {
                   <p className="step-description">{step.description}</p>
                 </div>
               ))}
-            </div>
+          </div>
       </div>
 
       {/* Video Section */}

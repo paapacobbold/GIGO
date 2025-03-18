@@ -10,12 +10,14 @@ import Overview from "./pages/OverviewPage/OverviewPage";
 import { Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Subscription from "./pages/Subscription/SubscriptionPage";
-import About from "./pages/About/AboutPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/route/ProtectedRoute";
-import Payment from "./pages/Payment/PaymentPage"
-import LocateFacilities from "./pages/LocateFacilities/LocateFacilitiesPage";
+import Payment from "./pages/Payment/PaymentPage";
+import ReportHistory from "./pages/ReportHistory/ReportHistoryPage";
 library.add(fas);
+import About from "./pages/About/AboutPage";
+import Location from "./pages/LocateFacilities/Location";
+import Recycling from "./pages/RecyclingTips/RecyclingPage";
 
 const App = () => {
   return (
@@ -42,9 +44,11 @@ const App = () => {
         />
         <Route path="/report-waste" element={<ReportWaste />} />
         <Route path="/subscription" element={<Subscription />} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/payment" element={<Payment/>}/>
-        <Route path="/facilities" element={<LocateFacilities/>}/>
+        <Route path="/about" element={<About />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/history" element={<ReportHistory />} />
+        <Route path="/facilities" element={<Location />} />
+        <Route path="/recycling-tips" element={<Recycling />} />
       </Routes>
     </AuthProvider>
   );
