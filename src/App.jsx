@@ -14,7 +14,7 @@ import About from "./pages/About/AboutPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/route/ProtectedRoute";
 import Payment from "./pages/Payment/PaymentPage"
-import LocateFacilities from "./pages/LocateFacilities/LocateFacilitiesPage";
+import LocateFacilities from "./pages/LocateFacilities/Location";
 library.add(fas);
 
 const App = () => {

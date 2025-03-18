@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Bell, Search } from "lucide-react";
 import Sidebar from "../../components/sidebar/sidebar";
+import TopBar from "../../components/TopBar/TopBar";
 import "leaflet/dist/leaflet.css";
 
 const Location = () => {
@@ -16,39 +16,14 @@ const Location = () => {
       />
 
       <div className="main-content">
-        <header className="header">
-          <div className="search-container">
-            <Search className="search-icon" size={20} />
-            <input
-              type="text"
-              placeholder="Search for recycling facilities..."
-              className="search-input"
-            />
-          </div>
-
-          <div className="header-actions">
-            <button className="notification-button">
-              <Bell size={20} />
-              <span className="notification-badge">3</span>
-            </button>
-            <div className="profile-dropdown">
-              <div className="avatar">
-                <img src="/default-avatar.png" alt="User avatar" />
-              </div>
-              <div className="user-info">
-                <span className="username">John Doe</span>
-                <span className="role">Admin</span>
-              </div>
-            </div>
-          </div>
-        </header>
+        <TopBar />
 
         <div className="content">
-          <h1>Locate Recycling Facilities</h1>
+          
           <MapContainer
             center={[51.505, -0.09]}
             zoom={13}
-            style={{ height: "400px", width: "100%" }}
+            style={{ height: "500px", width: "100%" }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
