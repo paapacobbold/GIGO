@@ -12,8 +12,8 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import Subscription from "./pages/Subscription/SubscriptionPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/route/ProtectedRoute";
-import Payment from "./pages/Payment/PaymentPage";
-import ReportHistory from "./pages/ReportHistory/ReportHistoryPage";
+import Payment from "./pages/Payment/PaymentPage"
+import LocateFacilities from "./pages/LocateFacilities/LocateFacilitiesPage";
 library.add(fas);
 import About from "./pages/About/AboutPage";
 import Location from "./pages/LocateFacilities/Location";

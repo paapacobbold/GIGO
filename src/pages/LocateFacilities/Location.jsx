@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Bell, Search } from "lucide-react";
 import Sidebar from "../../components/sidebar/sidebar";
-import "leaflet/dist/leaflet.css";
 import TopBar from "../../components/TopBar/TopBar";
+import "leaflet/dist/leaflet.css";
 
 const Location = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -17,12 +16,14 @@ const Location = () => {
       />
       <TopBar />
       <div className="main-content">
+       
+
         <div className="content">
-          <h1>Locate Recycling Facilities</h1>
+          
           <MapContainer
             center={[51.505, -0.09]}
             zoom={13}
-            style={{ height: "600px", width: "100%" }}
+            style={{ height: "500px", width: "100%" }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
