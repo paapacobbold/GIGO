@@ -96,6 +96,7 @@ body {
   width: calc(100% - 2rem); /*Adjust width to account for right margin*/
   margin-left: 10px;
   margin-top: 15px;
+  position: relative;
 }
 
 /* Banner */

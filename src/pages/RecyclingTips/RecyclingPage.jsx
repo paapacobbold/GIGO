@@ -420,27 +420,3 @@ const Recycling = () => {
 };
 
 export default Recycling;
-
-// import React, { useState } from "react";
-// import TopBar from "../../components/TopBar/TopBar";
-// import Sidebar from "../../components/sidebar/sidebar";
-// import "./RecyclingPage.css";
-
-// export default function Recycling() {
-//   const [isDarkMode, setIsDarkMode] = useState(false);
-
-//   return (
-//     // ✅ Add return statement
-//     <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
-//       <Sidebar
-//         isDarkMode={isDarkMode}
-//         setIsDarkMode={setIsDarkMode}
-//         activePage="recycling-tips"
-//       />
-//       <TopBar />
-//       <div className="main-content">
-
-//       </div>
-//     </div>
-//   );
-// }
