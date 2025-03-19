@@ -12,12 +12,12 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import Subscription from "./pages/Subscription/SubscriptionPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/route/ProtectedRoute";
-import Payment from "./pages/Payment/PaymentPage"
-import LocateFacilities from "./pages/LocateFacilities/LocateFacilitiesPage";
-library.add(fas);
+import Payment from "./pages/Payment/PaymentPage";
 import About from "./pages/About/AboutPage";
 import Location from "./pages/LocateFacilities/Location";
 import Recycling from "./pages/RecyclingTips/RecyclingPage";
+import ReportHistory from "./pages/ReportHistory/ReportHistoryPage"; // Add this import
+library.add(fas);
 
 const App = () => {
   return (
