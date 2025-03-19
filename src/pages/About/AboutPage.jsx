@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import TopBar from "../../components/TopBar/TopBar";
 import Sidebar from "../../components/sidebar/sidebar";
 import "./AboutPage.css";
+import "./AboutPage.css";
 import About1 from "../../assets/images/About1.png";
 import About2 from "../../assets/images/About2.png";
 import About3 from "../../assets/images/About3.png";
@@ -12,6 +13,14 @@ import Team3 from "../../assets/images/team3.png";
 
 export default function About() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
+    <Sidebar
+      isDarkMode={isDarkMode}
+      setIsDarkMode={setIsDarkMode}
+      activePage="overview"
+    />
+    <TopBar />
+  </div>;
 
   return (
     <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
@@ -164,3 +173,4 @@ export default function About() {
     </div>
   );
 }
+

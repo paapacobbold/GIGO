@@ -14,9 +14,9 @@ const Location = () => {
         setIsDarkMode={setIsDarkMode}
         activePage="locate-facilities"
       />
-
+      <TopBar />
       <div className="main-content">
-        <TopBar />
+       
 
         <div className="content">
           
