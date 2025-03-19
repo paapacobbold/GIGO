@@ -1,5 +1,6 @@
 /* Top Bar Container */
 .top-bar {
+  /* when i set the position to absolute and i reduce the screen size it matches perfectly without moving further left */
   position: fixed;
   top: 0;
   right: 0;

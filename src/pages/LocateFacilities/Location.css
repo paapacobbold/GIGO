@@ -1,0 +1,14 @@
+.content {
+  padding: 2rem;
+}
+
+h1 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+.map-container {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
