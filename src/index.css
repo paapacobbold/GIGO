@@ -66,3 +66,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Default (Mobile First) */
+.Sidebar {
+    width: 100%;
+    position: fixed;
+    left: -100%;
+    transition: left 0.3s;
+}
+
+/* Tablet View */
+@media (min-width: 768px) {
+    .Sidebar {
+        width: 250px;
+        left: 0;
+        position: relative;
+    }
+}
+
+/* Desktop View */
+@media (min-width: 1024px) {
+    .Sidebar {
+        width: 300px;
+    }
+}
+
