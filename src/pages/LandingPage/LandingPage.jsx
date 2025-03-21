@@ -1,5 +1,6 @@
-import { React, useState } from "react";
-import { Link } from "react-router-dom";
+import { React, useState,useEffect  } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../../firebase";
 import "./LandingPage.css";
 // Import all images
 import logoIcon from "../../assets/images/Logo Icon.svg";
@@ -13,6 +14,7 @@ import jasminImage from "../../assets/images/jas-min-DR2jtLy8Fe4-unsplash.jpg";
 import liHaoImage from "../../assets/images/li-hao-b25tsR8dBh0-unsplash.jpg";
 import towfiquImage from "../../assets/images/towfiqu-barbhuiya-ho-p7qLBewk-unsplash.jpg";
 import zibikImage from "../../assets/images/zibik-iR4mClggzEU-unsplash.jpg";
+import { Link, useNavigate } from "react-router-dom";
 
 // Service data with imported images
 const processSteps = [
@@ -67,7 +69,27 @@ const serviceData = [
       "Beyond waste management, we offer specialized services, including hazardous waste disposal, composting solutions, and bulk waste removal. Our goal is to provide innovative solutions tailored to your specific needs while ensuring environmental responsibility.",
   },
 ];
+
+
 const LandingPage = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    
+      
+   
+    });
+  
+    return () => unsubscribe();
+  }, [navigate,setUser]);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/login");
+  };
   return (
     <>
       {/* Navigation Bar */}
@@ -92,15 +114,22 @@ const LandingPage = () => {
             <li>
               <a href="#">Contact</a>
             </li>
-            <li>
-              <Link
-                to="/login"
-                className="btn-primary"
-                style={{ color: "white" }}
-              >
-                Log In
-              </Link>
-            </li>
+            {user ? (
+              <>
+                <li style={{ color: "black" }}>{user.email}</li>
+                <li>
+                  <button className="btn-primary" onClick={handleLogout} style={{ color: "white" , backgroundColor: "red"}}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link to="/login" className="btn-primary" style={{ color: "white" }}>
+                  Log In
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
