@@ -1,16 +1,16 @@
 :root {
-  --primary-color: #0e7a3c;
-  --primary-light: rgba(14, 122, 60, 0.1);
-  --secondary-color: #2ecc71;
-  --text-color: #333;
-  --text-light: #666;
-  --border-color: #e0e0e0;
-  --card-bg: #fff;
-  --plastic-color: #3498db;
-  --paper-color: #f39c12;
-  --glass-color: #9b59b6;
-  --metal-color: #e74c3c;
-  --electronic-color: #34495e;
+  --primary-color: var(--color-green-700);
+  --primary-light: var(--color-green-50);
+  --secondary-color: var(--color-green-500);
+  --text-color: var(--color-gray-900);
+  --text-light: var(--color-gray-600);
+  --border-color: var(--color-gray-200);
+  --card-bg: var(--color-white);
+  --plastic-color: var(--color-blue-500);
+  --paper-color: var(--color-green-500);
+  --glass-color: var(--color-purple-500);
+  --metal-color: var(--color-red-500);
+  --electronic-color: var(--color-gray-800);
 }
 .app-container {
   display: flex;
@@ -21,30 +21,20 @@
   position: relative;
 }
 .recycling-container {
-  width: calc(100% - 290px);
+  width: 100%;
   min-height: 100vh;
-  margin-left: 290px; /* Match sidebar width */
-  background-color: var(--bg-main);
+  margin-left: 0;
+  background-color: var(--color-gray-50);
   position: relative;
   margin-top: 50px;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 .content2 {
-  padding: 2rem;
-  max-width: 1380px;
-  margin: 0 2rem 0 0; /* Right margin only */
-  width: calc(1280px - 2rem); /*Adjust width to account for right margin*/
-  margin-left: 10px;
-  margin-top: 15px;
-}
-
-/* .recycling-container {
-  font-family: Arial, sans-serif;
-  color: var(--text-color);
-  padding: 20px;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-} */
+  width: 100%;
+}
 
 .recycling-header {
   text-align: center;
@@ -244,14 +234,29 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .recycling-container {
+    padding: 1rem;
+    margin-top: 30px;
+  }
+
   .tips-grid,
   .facts-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .category-tabs {
     overflow-x: auto;
     padding-bottom: 10px;
     justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .recycling-header h1 {
+    font-size: 24px;
+  }
+
+  .recycling-header p {
+    font-size: 14px;
   }
 }
