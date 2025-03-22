@@ -20,6 +20,7 @@ import ReportHistory from "./pages/ReportHistory/ReportHistoryPage";
 import PickupSchedule from "./pages/schedule/PickupSchedule";
 import ChatPage from "./pages/Chat/ChatPage";
 import SettingsPage from "./pages/settings/SettingsPage";
+import HelpCenter from "./pages/help/HelpCenter";
 library.add(fas);
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/pickup-schedule" element={<PickupSchedule />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/settings" element={<SettingsPage/>}/>
+        <Route path="/help" element={<HelpCenter/>} />
       </Routes>
     </AuthProvider>
   );
