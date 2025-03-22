@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/sidebar/sidebar";
 import team1 from "../../assets/images/team1.png";
 import team2 from "../../assets/images/team2.png";
@@ -6,14 +6,14 @@ import team3 from "../../assets/images/team3.png";
 import "./ChatPage.css";
 import {
   Paperclip,
-  Send, // Add this import
+  Send,
   X,
   Plus,
-  Trash2,
   MoreHorizontal,
   Phone,
   Mail,
   Globe,
+  ArrowLeft,
 } from "lucide-react";
 
 const ChatApp = () => {
@@ -21,30 +21,34 @@ const ChatApp = () => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
   const [messageInput, setMessageInput] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false); // Add dark mode state
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
       text: "Hello, I'm having issues with my scheduling.",
       time: "8:29 pm",
+      date: "Today",
       sent: false,
     },
     {
       id: 2,
       text: "GIGO customer service here. Is there anything I can help you with?",
       time: "8:29 pm",
+      date: "Today",
       sent: true,
     },
     {
       id: 3,
       text: "Okay. It says the location isn't available.",
       time: "8:29 pm",
+      date: "Today",
       sent: false,
     },
     {
       id: 4,
       text: "Could you specify the exact problem so that I could help you?",
       time: "Just now",
+      date: "Today",
       sent: true,
     },
   ]);
@@ -55,10 +59,8 @@ const ChatApp = () => {
   };
 
   const handleProfileClick = () => {
-    setShowInfo(true);
-    // Optional: Keep the selected contact in memory but hide chat
+    setShowInfo(!showInfo); // Toggle info panel
   };
-
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -68,6 +70,7 @@ const ChatApp = () => {
       id: messages.length + 1,
       text: messageInput,
       time: "Just now",
+      date: "Today",
       sent: true,
     };
 
@@ -79,6 +82,19 @@ const ChatApp = () => {
     setShowInfo(false);
   };
 
+  // Add a class to manage visibility on mobile
+  const containerClass = () => {
+    let classes = "chat-container";
+    if (selectedContact) classes += " show-chat";
+    if (showInfo) classes += " show-info";
+    return classes;
+  };
+
+  // Handle back button for mobile view
+  const handleBackToContacts = () => {
+    setSelectedContact(null);
+  };
+
   return (
     <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
       <Sidebar
@@ -87,22 +103,26 @@ const ChatApp = () => {
         activePage="chat"
       />
 
-      <div className="chat-container">
+      <div className={containerClass()}>
         <MessagesSection
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           onContactSelect={handleContactSelect}
         />
 
-        {selectedContact && (
+        {selectedContact ? (
           <ChatSection
             contact={selectedContact}
             messages={messages}
+            setMessages={setMessages}
             messageInput={messageInput}
             setMessageInput={setMessageInput}
             onSendMessage={handleSendMessage}
             onProfileClick={handleProfileClick}
+            onBack={handleBackToContacts}
           />
+        ) : (
+          <EmptyChat />
         )}
 
         {showInfo && selectedContact && (
@@ -188,6 +208,13 @@ const MessagesSection = ({ activeTab, setActiveTab, onContactSelect }) => {
     },
   ];
 
+  // Filter contacts based on active tab
+  const filteredContacts = contacts.filter(contact => {
+    if (activeTab === "unread") return contact.unread;
+    if (activeTab === "archive") return false; // No archived contacts in this example
+    return true; // "all" tab shows everything
+  });
+
   return (
     <div className="messages-section">
       <div className="messages-tabs">
@@ -211,7 +238,7 @@ const MessagesSection = ({ activeTab, setActiveTab, onContactSelect }) => {
       </div>
 
       <div className="contact-list">
-        {contacts.map((contact) => (
+        {filteredContacts.map((contact) => (
           <div
             key={contact.id}
             className={`contact-item ${contact.id === 2 ? "highlighted" : ""}`}
@@ -235,18 +262,26 @@ const MessagesSection = ({ activeTab, setActiveTab, onContactSelect }) => {
   );
 };
 
-// Add this before the ChatSection component
-
 // Chat Section
 const ChatSection = ({
   contact,
   messages,
+  setMessages,
   messageInput,
   setMessageInput,
   onSendMessage,
   onProfileClick,
+  onBack,
 }) => {
   const fileInputRef = React.useRef(null);
+  const messagesContainerRef = React.useRef(null);
+
+  // Scroll to bottom of messages when messages change
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleFileAttach = () => {
     fileInputRef.current.click();
@@ -263,6 +298,7 @@ const ChatSection = ({
         id: messages.length + 1,
         text: `Sent file: ${file.name}`,
         time: "Just now",
+        date: "Today",
         sent: true,
         attachment: {
           name: file.name,
@@ -272,29 +308,42 @@ const ChatSection = ({
         },
       };
 
-      messages((prev) => [...prev, newMessage]);
+      // Fixed: Using setMessages function properly
+      setMessages((prev) => [...prev, newMessage]);
     });
 
     // Clear the file input
     e.target.value = "";
   };
 
+  // Group messages by date
+  const messagesByDate = messages.reduce((groups, message) => {
+    if (!groups[message.date]) {
+      groups[message.date] = [];
+    }
+    groups[message.date].push(message);
+    return groups;
+  }, {});
+
   return (
     <div className="chat-section">
       <div className="chat-header">
-        <div
-          className="chat-title"
-          onClick={onProfileClick}
-          style={{ cursor: "pointer" }}
-        >
-          <div className="avatar">
+        <div className="chat-title">
+          <button className="back-button" onClick={onBack}>
+            <ArrowLeft size={16} />
+          </button>
+          <div 
+            className="avatar" 
+            onClick={onProfileClick} 
+            style={{ cursor: "pointer" }}
+          >
             <img
               src={contact.avatar}
               alt={contact.name}
               style={{ width: "40px", height: "40px", objectFit: "cover" }}
             />
           </div>
-          <h2>{contact.name}</h2>
+          <h2 onClick={onProfileClick} style={{ cursor: "pointer" }}>{contact.name}</h2>
         </div>
         <div className="chat-actions">
           <button className="action-btn more">
@@ -303,34 +352,37 @@ const ChatSection = ({
         </div>
       </div>
 
-      <div className="messages-container">
-        <div className="date-separator">Today</div>
-
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`message ${message.sent ? "sent" : "received"}`}
-          >
-            <div className="message-bubble">
-              <p>{message.text}</p>
-              {message.attachment && (
-                <div className="attachment-preview">
-                  {message.attachment.type.startsWith("image/") ? (
-                    <img
-                      src={message.attachment.url}
-                      alt={message.attachment.name}
-                    />
-                  ) : (
-                    <div className="file-attachment">
-                      <Paperclip size={16} />
-                      <span>{message.attachment.name}</span>
+      <div className="messages-container" ref={messagesContainerRef}>
+        {Object.entries(messagesByDate).map(([date, dateMessages]) => (
+          <React.Fragment key={date}>
+            <div className="date-separator">{date}</div>
+            {dateMessages.map((message) => (
+              <div
+                key={message.id}
+                className={`message ${message.sent ? "sent" : "received"}`}
+              >
+                <div className="message-bubble">
+                  <p>{message.text}</p>
+                  {message.attachment && (
+                    <div className="attachment-preview">
+                      {message.attachment.type.startsWith("image/") ? (
+                        <img
+                          src={message.attachment.url}
+                          alt={message.attachment.name}
+                        />
+                      ) : (
+                        <div className="file-attachment">
+                          <Paperclip size={16} />
+                          <span>{message.attachment.name}</span>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
-              )}
-            </div>
-            <div className="message-time">{message.time}</div>
-          </div>
+                <div className="message-time">{message.time}</div>
+              </div>
+            ))}
+          </React.Fragment>
         ))}
       </div>
 
@@ -358,7 +410,7 @@ const ChatSection = ({
               >
                 <Paperclip size={18} />
               </button>
-              <button type="submit" className="send-btn">
+              <button type="submit" className="send-btn" disabled={!messageInput.trim()}>
                 <Send size={18} />
               </button>
             </div>
@@ -372,9 +424,11 @@ const ChatSection = ({
 // Empty Chat State
 const EmptyChat = () => {
   return (
-    <div className="empty-chat">
-      <div className="empty-chat-content">
-        <p>Select a conversation to start chatting</p>
+    <div className="chat-section">
+      <div className="empty-chat">
+        <div className="empty-chat-content">
+          <p>Select a conversation to start chatting</p>
+        </div>
       </div>
     </div>
   );
@@ -385,6 +439,7 @@ const InfoSection = ({ contact, onClose }) => {
   return (
     <div className="info-section">
       <div className="info-header">
+        <h2>Contact Info</h2>
         <button className="close-btn" onClick={onClose}>
           <X size={20} />
         </button>
@@ -400,7 +455,7 @@ const InfoSection = ({ contact, onClose }) => {
             />
           </div>
           <h3>{contact.name}</h3>
-          <p className="user-role">Administrator</p>
+          <p className="user-role">{contact.isAdmin ? "Administrator" : "User"}</p>
         </div>
 
         {/* Contact details now directly under profile */}
