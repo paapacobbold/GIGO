@@ -1,14 +1,8 @@
 :root {
-    --primary-green: #15803d;
-    --light-gray: #f1f5f9;
-    --text-gray: #64748b;
-    --border-gray: #e2e8f0;
-  }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  --primary-green: #15803d;
+  --light-gray: #f1f5f9;
+  --text-gray: #64748b;
+  --border-gray: #e2e8f0;
 }
 
 /* body {
@@ -20,178 +14,177 @@
 } */
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-left: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-section {
-    width: 50%;
+  width: 50%;
 }
 
 .form-section h1 {
-    font-size: 30px;
-    font-weight: 700;
-    margin-left: 25px;
-    text-align: left;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 25px;
+  text-align: left;
 }
 
 .sub-text {
-    font-size: 14px;
-    margin: 5px 0 20px;
-    margin-left: 45px;
-    text-align: left;
+  font-size: 14px;
+  margin: 5px 0 20px;
+  margin-left: 45px;
+  text-align: left;
 }
 
 .sub-text a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 500;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .sub-text a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    font-size: 15px;
-    font-weight: 500;
-    margin: 10px 0;
-    color: #444;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0;
+  color: #444;
 }
 
 input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 70%;
-    font-size: 14px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+  font-size: 14px;
 }
 
 .terms {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    margin-top: -5px;
-    width: 70%;
-    color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin-top: -5px;
+  width: 70%;
+  color: #666;
 }
 
 .terms input {
-    margin: 0;
-    width: 16px;
-    height: 16px;
+  margin: 0;
+  width: 16px;
+  height: 16px;
 }
 
 .terms a {
-    color: #666;  
-    text-decoration: none; 
-
+  color: #666;
+  text-decoration: none;
 }
 
 .terms a:hover {
-    text-decoration: underline; /* Add underline on hover */
+  text-decoration: underline; /* Add underline on hover */
 }
 
-
 .signup-btn {
-    width: 70%;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    background-color: #1A522A;
-    color: white;
-    transition: background 0.3s ease-in-out;
+  width: 70%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #1a522a;
+  color: white;
+  transition: background 0.3s ease-in-out;
 }
 
 .signup-btn:hover {
-    background: #003300;
+  background: #003300;
 }
 
 /* Divider Styling */
 .divider {
-    width: 62%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 20px;
-    color: #979797;
+  width: 62%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
+  color: #979797;
 }
 
 /* Social Buttons */
 .social-btn {
-    width: 70%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background: #fff;
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
+  width: 70%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
 }
 
 .social-btn img {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
-
 .google {
-    color: #d93025;
-    border-color: #d93025;
+  color: #d93025;
+  border-color: #d93025;
 }
 
 .google:hover {
-    background: #d93025;
-    color: white;
+  background: #d93025;
+  color: white;
 }
 
-
 .facebook {
-    color: #1877f2;
-    border-color: #1877f2;
+  color: #1877f2;
+  border-color: #1877f2;
 }
 
 .facebook:hover {
-    background: #1877f2;
-    color: white;
+  background: #1877f2;
+  color: white;
 }
 
 .image-section {
-    width: 50%;
+  width: 50%;
 }
 
 .image-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
