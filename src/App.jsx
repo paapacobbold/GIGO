@@ -18,6 +18,7 @@ import Location from "./pages/LocateFacilities/Location";
 import Recycling from "./pages/RecyclingTips/RecyclingPage";
 import ReportHistory from "./pages/ReportHistory/ReportHistoryPage"; 
 import PickupSchedule from "./pages/schedule/PickupSchedule";
+import ChatPage from "./pages/Chat/ChatPage";
 library.add(fas);
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/facilities" element={<Location />} />
         <Route path="/recycling-tips" element={<Recycling />} />
         <Route path="/pickup-schedule" element={<PickupSchedule />} />
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
     </AuthProvider>
   );
