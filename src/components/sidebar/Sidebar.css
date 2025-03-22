@@ -11,8 +11,10 @@
   --color-gray-700: #374151;
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
+  --color-gray-950: #0a0f1a;  /* Added missing gray-950 variable */
   --color-green-50: #f0fdf4;
   --color-green-100: #dcfce7;
+  --color-green-400: #4ade80;  /* Added missing green-400 variable */
   --color-green-500: #22c55e;
   --color-green-600: #16a34a;
   --color-green-700: #15803d;
@@ -34,7 +36,9 @@
   --border-radius-xl: 0.75rem;
   --border-radius-2xl: 1rem;
   --border-radius-full: 9999px;
-}/* Dark Mode */
+}
+
+/* Dark Mode */
 .dark-mode {
   --bg-sidebar: var(--color-gray-900);
   --bg-main: var(--color-gray-950);
@@ -43,6 +47,10 @@
   --text-muted: var(--color-gray-400);
   --border-color: var(--color-gray-800);
   --input-bg: var(--color-gray-800);
+  --hover-bg: var(--color-gray-800);
+  --active-bg: var(--color-green-900);
+  --active-color: var(--color-green-400);
+  --active-hover-bg: var(--color-green-800);
 }
 
 .app-container:not(.dark-mode) {
@@ -53,7 +61,12 @@
   --text-muted: var(--color-gray-500);
   --border-color: var(--color-gray-200);
   --input-bg: var(--color-white);
+  --hover-bg: var(--color-gray-100);
+  --active-bg: var(--color-green-100);
+  --active-color: var(--color-green-700);
+  --active-hover-bg: var(--color-green-200);
 }
+
 /* Sidebar Layout */
 .sidebar {
   width: 290px;
@@ -66,7 +79,6 @@
   border-right: 1px solid var(--border-color);
   z-index: 100;
   overflow-y: auto;
-
 }
 
 /* Logo Styles */
@@ -78,7 +90,7 @@
 }
 
 .logo-icon span {
-  color: var(--color-white);
+  color: var(--text-color);
   font-weight: bold;
 }
 
@@ -124,28 +136,26 @@
   margin-bottom: 0.25rem;
   color: var(--text-color);
   cursor: pointer;
-  transition: background-color 0.2s;
-  color: inherit;
+  transition: background-color 0.2s, color 0.2s;
   text-decoration: none;
 }
 
-.nav-item:hover {
-  background-color: var(--color-gray-100);
+/* Hover state for non-active items */
+.nav-item:not(.active):hover {
+  background-color: var(--hover-bg);
   text-decoration: none;
 }
 
-.dark-mode .nav-item:hover {
-  background-color: var(--color-gray-800);
-}
-
+/* Active state */
 .nav-item.active {
-  background-color: var(--color-green-100);
-  color: var(--color-green-700);
+  background-color: var(--active-bg);
+  color: var(--active-color);
 }
 
-.dark-mode .nav-item.active {
-  background-color: var(--color-green-900);
-  color: var(--color-green-400);
+/* Hover state for active items */
+.nav-item.active:hover {
+  background-color: var(--active-hover-bg);
+  text-decoration: none;
 }
 
 .nav-label {
@@ -155,6 +165,48 @@
 
 .dropdown-icon {
   margin-left: auto;
+}
+
+/* Settings Submenu Styles */
+.settings-submenu {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 1px solid var(--border-color);
+  padding-left: 0.5rem;
+}
+
+.settings-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 0.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
+/* Hover state for non-active sub-items */
+.settings-sub-item:not(.active):hover {
+  background-color: var(--hover-bg);
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* Active state for sub-items */
+.settings-sub-item.active {
+  color: var(--active-color);
+  background-color: var(--active-bg);
+  font-weight: 500;
+}
+
+/* Hover state for active sub-items */
+.settings-sub-item.active:hover {
+  background-color: var(--active-hover-bg);
+  text-decoration: none;
 }
 
 /* Icon Colors */
@@ -171,15 +223,18 @@
 }
 
 /* Theme Toggle */
-.theme-toggle {
+.theme-toggle-container {
   height: 40px;
   width: 85%;
-  background-color: var(--color-green-100);
+  background-color: var(--color-gray-200);
   border-radius: var(--border-radius-full);
   margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.dark-mode .theme-toggle {
+.dark-mode .theme-toggle-container {
   background-color: var(--color-gray-800);
 }
 
