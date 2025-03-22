@@ -124,7 +124,10 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
         </div>
 
         <div className="theme-toggle-container">
-          <CustomSwitchSelector isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+          <CustomSwitchSelector
+            isDarkMode={isDarkMode}
+            setIsDarkMode={setIsDarkMode}
+          />
         </div>
       </div>
     </div>

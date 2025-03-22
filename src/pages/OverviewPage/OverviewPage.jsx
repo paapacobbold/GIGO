@@ -187,14 +187,14 @@ export default function Overview() {
                 Every sustainable choice matters. Partner with us to create a
                 cleaner, greener future for generations to come.
               </p>
-              <div className="cta-buttons">
+              {/* <div className="cta-buttons">
                 <a href="#contact" className="cta-button primary">
                   Get Started
                 </a>
                 <a href="#learn-more" className="cta-button secondary">
                   Learn More
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

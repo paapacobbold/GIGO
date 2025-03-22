@@ -25,7 +25,8 @@
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   --border-radius-sm: 0.125rem;
   --border-radius: 0.25rem;
@@ -34,7 +35,7 @@
   --border-radius-xl: 0.75rem;
   --border-radius-2xl: 1rem;
   --border-radius-full: 9999px;
-}/* Dark Mode */
+} /* Dark Mode */
 .dark-mode {
   --bg-sidebar: var(--color-gray-900);
   --bg-main: var(--color-gray-950);
@@ -66,7 +67,6 @@
   border-right: 1px solid var(--border-color);
   z-index: 100;
   overflow-y: auto;
-
 }
 
 /* Logo Styles */

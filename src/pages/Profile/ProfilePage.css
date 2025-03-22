@@ -371,6 +371,7 @@ body {
   border: 1px solid #4caf50;
   border-radius: 5px;
   outline: none;
+  color: black;
 }
 #email-textbox {
   width: 34%;

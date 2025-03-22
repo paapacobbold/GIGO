@@ -16,8 +16,7 @@ import Payment from "./pages/Payment/PaymentPage";
 import About from "./pages/About/AboutPage";
 import Location from "./pages/LocateFacilities/Location";
 import Recycling from "./pages/RecyclingTips/RecyclingPage";
-import ReportHistory from "./pages/ReportHistory/ReportHistoryPage"; 
-import PickupSchedule from "./pages/schedule/PickupSchedule";
+import ReportHistory from "./pages/ReportHistory/ReportHistoryPage";
 library.add(fas);
 
 const App = () => {
@@ -50,7 +49,6 @@ const App = () => {
         <Route path="/history" element={<ReportHistory />} />
         <Route path="/facilities" element={<Location />} />
         <Route path="/recycling-tips" element={<Recycling />} />
-        <Route path="/pickup-schedule" element={<PickupSchedule />} />
       </Routes>
     </AuthProvider>
   );
