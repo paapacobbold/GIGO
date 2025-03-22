@@ -1,8 +1,10 @@
-import React, { createContext, useState, useContext } from "react";
+// src/context/AuthContext.js
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { auth } from "../../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const AuthContext = createContext(null);
 
-// Move useAuth hook definition before AuthProvider
 const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -13,24 +15,35 @@ const useAuth = () => {
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const login = () => {
-    setIsAuthenticated(true);
-    console.log("Login successful"); // Debug log
-  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setIsAuthenticated(true);
+        setUser(firebaseUser);
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+      setLoading(false); // Loading complete once we get the auth state
+    });
 
-  const logout = () => {
+    return () => unsubscribe(); // Clean up listener on unmount
+  }, []);
+
+  const logout = async () => {
+    await signOut(auth);
     setIsAuthenticated(false);
+    setUser(null);
   };
-
-  console.log("Auth state:", { isAuthenticated });
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ isAuthenticated, user, logout, loading }}>
+      {!loading && children} {/* Only render children when not loading */}
     </AuthContext.Provider>
   );
 };
 
-// Export both as named exports
 export { AuthProvider, useAuth };

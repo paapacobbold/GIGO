@@ -114,22 +114,13 @@ const LandingPage = () => {
             <li>
               <a href="#">Contact</a>
             </li>
-            {user ? (
-              <>
-                <li style={{ color: "black" }}>{user.email}</li>
-                <li>
-                  <button className="btn-primary" onClick={handleLogout} style={{ color: "white" , backgroundColor: "red"}}>
-                    Logout
-                  </button>
-                </li>
-              </>
-            ) : (
+            
               <li>
                 <Link to="/login" className="btn-primary" style={{ color: "white" }}>
                   Log In
                 </Link>
               </li>
-            )}
+            
           </ul>
         </div>
       </nav>

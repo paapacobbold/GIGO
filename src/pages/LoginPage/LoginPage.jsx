@@ -5,10 +5,13 @@ import "./LoginPage.css";
 import loginImage from "../../assets/images/login image.png";
 import { auth, googleProvider } from "../../../firebase";
 import { signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,11 +20,20 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
+    setLoading(true);
+    
+
     try {
-      login();
-      navigate("/overview");
+      const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      console.log('Logged in as:', userCredential.user);
+      navigate('/overview'); 
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Error Code:", error.code);
+      console.error("Error Message:", error.message);
+      setError('Invalid email or password. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -29,10 +41,11 @@ const LoginPage = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      console.log('User Info:', user);
-      alert(`Welcome, ${user.displayName}!`);
-      navigate("/"); // Redirect to homepage upon successful Google login
+      // console.log('User Info:', user);
+     
+      navigate("/overview"); // Redirect to homepage upon successful Google login
     } catch (error) {
+
       console.error('Login Failed:', error);
       alert('Login Failed. Please try again.');
     }
@@ -43,7 +56,7 @@ const LoginPage = () => {
       <div className="login-wrapper">
         <div className="login-form">
           <h1>Log In</h1>
-
+         
           <p className="signup-text">
             Don't have an account? <Link to="/signup" className="signup-link">Sign Up</Link>
           </p>
@@ -61,7 +74,7 @@ const LoginPage = () => {
 
             <div className="divider"><span>OR</span></div>
           </div>
-
+          {error && <div className="text-red-500">{error}</div>}
           <form onSubmit={handleLogin}>
             <div className="input-container">
               <input
@@ -87,7 +100,13 @@ const LoginPage = () => {
 
             <div className="forgot-password"><span>Forgot Password?</span></div>
 
-            <button type="submit" className="login-button">Log in</button>
+            <button 
+          type="submit" 
+          className="login-button" 
+          disabled={loading}
+        >
+          {loading ? <div className="loader"></div> : "Login"}
+        </button>
           </form>
         </div>
 
