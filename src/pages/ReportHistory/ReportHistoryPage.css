@@ -178,6 +178,53 @@
   max-width: 100%;
   box-sizing: border-box;
 }
+.delete-button {
+  background-color: #0e7a3c; /* Green */
+  color: white;
+  border: none;
+  padding: 15px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 30px;
+}
+
+.delete-button:hover {
+  background-color: #0c6a33; /* Darker Green */
+}
+
+.delete-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.instructions-column {
+  max-width: 150px; /* Prevents text from expanding column */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.instructions-wrapper {
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.view-more-btn {
+  color: green;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.view-more-btn:hover {
+  text-decoration: underline;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

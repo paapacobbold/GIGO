@@ -29,6 +29,7 @@ body {
   /* removed this so that the login page would be centered */
   /* justify-content: flex-start; */
   width: 100%;
+  justify-content: center;
 }
 
 h1 {

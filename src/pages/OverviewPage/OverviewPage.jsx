@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Bell, Search } from "lucide-react";
-import Sidebar from "../../components/sidebar/sidebar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "./OverviewPage.css";
 // import logoIcon from "../../assets/images/Logo Icon.svg";
 import plantImage from "../../assets/images/picture.png";

@@ -44,6 +44,32 @@ const Recycling = () => {
           "Remove plastic film and wrapping from paper products before recycling.",
         impact: "Prevents contamination in paper recycling streams.",
       },
+      {
+        title: "Avoid Wishcycling",
+        description:
+          "Don't toss items in the recycling bin unless you're sure they are recyclable. Contaminated recycling can lead to entire batches being discarded.",
+        impact:
+          "Reduces contamination and increases successful recycling rates.",
+      },
+      {
+        title: "Recycle Caps Separately",
+        description:
+          "Caps from plastic bottles and jars should be removed and recycled separately, as they are often made from different types of plastic.",
+        impact: "Ensures better sorting and processing in recycling plants.",
+      },
+      {
+        title: "Reuse Before Recycling",
+        description:
+          "Before disposing of items, consider reusing or repurposing them. Many household items can have a second life with a little creativity.",
+        impact: "Reduces waste generation and saves natural resources.",
+      },
+      {
+        title: "Avoid Mixing Materials",
+        description:
+          "Recyclable items that are combined with non-recyclable materials (e.g., plastic-coated paper) can’t be processed properly.",
+        impact:
+          "Improves efficiency and prevents contamination in recycling streams.",
+      },
     ],
     plastic: [
       {
@@ -73,6 +99,31 @@ const Recycling = () => {
           "Black plastic is difficult to recycle because sorting machines can't detect it easily.",
         impact:
           "Choosing clear or light-colored plastics increases the chance of successful recycling.",
+      },
+      {
+        title: "Recycle Plastic Wraps Separately",
+        description:
+          "Plastic wraps and films should be recycled separately at collection centers rather than placed in curbside bins.",
+        impact: "Prevents sorting machine malfunctions and contamination.",
+      },
+      {
+        title: "Avoid Mixing Different Plastics",
+        description:
+          "Recycling centers prefer plastics separated by type. Mixing different plastics can lower the quality of recycled material.",
+        impact: "Increases efficiency in plastic reprocessing plants.",
+      },
+      {
+        title: "Use Reusable Containers",
+        description:
+          "Opt for reusable plastic containers instead of disposable ones to reduce overall waste production.",
+        impact: "Cuts down on plastic waste and reduces pollution.",
+      },
+      {
+        title: "Crush Bottles Before Recycling",
+        description:
+          "Crushing plastic bottles before recycling saves space and makes transportation more efficient.",
+        impact:
+          "Improves storage capacity and lowers emissions from transport.",
       },
     ],
     paper: [
@@ -104,6 +155,30 @@ const Recycling = () => {
         impact:
           "Food residue can contaminate entire batches of recycled paper.",
       },
+      {
+        title: "Separate Glossy Paper",
+        description:
+          "Some glossy papers (like magazines) contain plastic coatings that make them non-recyclable. Check with your local program.",
+        impact: "Ensures proper recycling and prevents contamination.",
+      },
+      {
+        title: "Recycle Junk Mail",
+        description:
+          "Most junk mail and envelopes are recyclable, but remove plastic windows before placing them in the bin.",
+        impact: "Reduces landfill waste and increases recycled paper quality.",
+      },
+      {
+        title: "Reuse Scrap Paper",
+        description:
+          "Use the backside of printed papers for notes, sketches, or scrap paper before recycling.",
+        impact: "Extends the life of paper and reduces waste.",
+      },
+      {
+        title: "Donate Unused Notebooks",
+        description:
+          "Partially used notebooks or paper can be donated to schools or charities instead of being discarded.",
+        impact: "Supports education and reduces paper waste.",
+      },
     ],
     glass: [
       {
@@ -132,6 +207,33 @@ const Recycling = () => {
         description:
           "Don't put broken glass in recycling bins as it can be dangerous for workers.",
         impact: "Worker safety is a priority at recycling facilities.",
+      },
+      {
+        title: "Reuse Glass Jars",
+        description:
+          "Glass jars can be reused for food storage, crafts, or DIY projects before recycling.",
+        impact: "Extends product life and reduces waste.",
+      },
+      {
+        title: "No Ceramics in Glass Recycling",
+        description:
+          "Ceramic materials like mugs and plates cannot be recycled with glass. Dispose of them separately.",
+        impact:
+          "Prevents glass contamination and ensures better recycling quality.",
+      },
+      {
+        title: "Recycle Wine and Liquor Bottles",
+        description:
+          "Many glass recycling programs accept wine and liquor bottles, but remove corks or metal lids first.",
+        impact:
+          "Improves recycling efficiency and ensures proper material separation.",
+      },
+      {
+        title: "Avoid Mixing Different Glass Types",
+        description:
+          "Tempered glass (e.g., Pyrex) and window glass melt at different temperatures than container glass, making them non-recyclable.",
+        impact:
+          "Ensures successful glass recycling and prevents processing issues.",
       },
     ],
     metal: [
@@ -163,6 +265,30 @@ const Recycling = () => {
         impact:
           "Improves the purity of recycled metal and reduces processing steps.",
       },
+      {
+        title: "Recycle Metal Lids Separately",
+        description:
+          "Separate metal lids from glass or plastic containers before recycling to ensure proper processing.",
+        impact: "Improves sorting and recovery rates at recycling facilities.",
+      },
+      {
+        title: "Rinse Out Food Cans",
+        description:
+          "Always rinse metal food cans before recycling to prevent contamination.",
+        impact: "Keeps other recyclables clean and improves processing.",
+      },
+      {
+        title: "Recycle Aluminum Foil",
+        description:
+          "Aluminum foil can be recycled if it is clean. Crumple it into a ball before placing it in the bin.",
+        impact: "Prevents small pieces from being lost in sorting machines.",
+      },
+      {
+        title: "Collect Scrap Metal",
+        description:
+          "Old tools, broken appliances, and metal hardware can be taken to scrap metal recycling centers.",
+        impact: "Reduces landfill waste and supports metal recovery programs.",
+      },
     ],
     electronic: [
       {
@@ -192,6 +318,30 @@ const Recycling = () => {
           "Many electronics manufacturers offer take-back or recycling programs for their products.",
         impact:
           "Manufacturer programs often have higher standards for responsible recycling.",
+      },
+      {
+        title: "Repair Before Recycling",
+        description:
+          "Before recycling electronics, check if they can be repaired or upgraded to extend their lifespan.",
+        impact: "Reduces e-waste and saves money on replacements.",
+      },
+      {
+        title: "Dispose of Cables Properly",
+        description:
+          "Electrical cables and wires should be recycled at e-waste centers instead of being thrown in regular bins.",
+        impact: "Prevents hazardous materials from entering landfills.",
+      },
+      {
+        title: "Remove Personal Data",
+        description:
+          "Always factory reset your electronic devices before recycling them to protect your personal information.",
+        impact: "Ensures data security while allowing responsible recycling.",
+      },
+      {
+        title: "Trade-In Old Devices",
+        description:
+          "Many companies offer trade-in programs for old phones, laptops, and tablets, providing store credit or discounts on new products.",
+        impact: "Encourages reuse and proper disposal of electronic waste.",
       },
     ],
   };

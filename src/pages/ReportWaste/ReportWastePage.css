@@ -245,7 +245,7 @@ body {
 }
 
 /* Upload Area */
-.upload-area {
+/* .upload-area {
   border: 2px dashed var(--color-green-600);
   border-radius: var(--border-radius-lg);
   padding: 5rem 4rem 5rem 4rem;
@@ -254,7 +254,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-}
+} */
 .upload-area:hover {
   background-color: var(--color-green-100);
 }
@@ -276,6 +276,76 @@ body {
 
 .upload-icon {
   color: var(--color-gray-500);
+}
+.upload-area {
+  border: 2px dashed var(--color-green-600);
+  border-radius: var(--border-radius-lg);
+  padding: 5rem 4rem 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.file-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image fills the container */
+  border-radius: 8px;
+}
+
+.upload-icon {
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.upload-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.upload-description {
+  font-size: 14px;
+  color: #666;
+}
+
+.video-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video fits well */
+}
+
+.popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
 }
 
 .upload-title {
@@ -402,8 +472,10 @@ body {
   color: var(--color-green-700);
   background-color: #ffffff;
   width: 25%;
+  border: 1px solid var(--color-green-700);
 }
 .Cancel-btn:hover {
   background-color: var(--color-green-700);
   color: white;
+  border: 1px solid var(--color-green-700);
 }

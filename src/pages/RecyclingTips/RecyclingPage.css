@@ -73,23 +73,39 @@
   justify-content: center;
 }
 
+.category-tabs {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping to new lines */
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  white-space: nowrap; /* Prevent text from wrapping */
+  padding-bottom: 10px;
+}
+
 .category-tab {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  justify-content: center; /* Center text and icons */
+  flex: 1; /* Make all buttons equal width */
+  min-width: 140px; /* Set a minimum width */
+  max-width: 200px; /* Set a max width if needed */
+  padding: 12px 18px;
   background-color: #f5f5f5;
-  border: 1px solid var(--border-color);
+
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 14px;
   font-weight: 500;
   color: var(--text-color);
+  text-align: center;
 }
 
 .category-tab:hover {
-  background-color: var(--primary-light);
+  background-color: #dcfce7;
+  border: 1px solid var(--border-color);
 }
 
 .category-tab.active {
@@ -102,8 +118,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 24px; /* Adjust icon size */
+  height: 24px;
 }
 
 .category-icon svg {
