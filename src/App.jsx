@@ -19,6 +19,7 @@ import Recycling from "./pages/RecyclingTips/RecyclingPage";
 import ReportHistory from "./pages/ReportHistory/ReportHistoryPage"; 
 import PickupSchedule from "./pages/schedule/PickupSchedule";
 import ChatPage from "./pages/Chat/ChatPage";
+import SettingsPage from "./pages/settings/SettingsPage";
 library.add(fas);
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/recycling-tips" element={<Recycling />} />
         <Route path="/pickup-schedule" element={<PickupSchedule />} />
         <Route path="/chat" element={<ChatPage />} />
+        <Route path="/settings" element={<SettingsPage/>}/>
       </Routes>
     </AuthProvider>
   );
