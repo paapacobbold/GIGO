@@ -1,0 +1,267 @@
+.container {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2a813b;
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
+  .searchContainer {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    position: relative;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .searchIcon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .categoriesNav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .categoryButton {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  
+  .activeCategory {
+    background-color: #2a813b;
+    color: white;
+  }
+  
+  .inactiveCategory {
+    background-color: white;
+    color: #555;
+    border: 1px solid #ddd;
+  }
+  
+  .contentContainer {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .faqContainer {
+    margin-bottom: 1rem;
+  }
+  
+  .faqItem {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .faqQuestion {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .faqAnswer {
+    padding: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .noResults {
+    text-align: center;
+    padding: 2rem 0;
+    color: #777;
+  }
+  
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .cardHover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .iconContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cardText {
+    color: #555;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  
+  .cardLink {
+    color: #2a813b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .contactGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contactInfo {
+    margin-bottom: 1.5rem;
+  }
+  
+  .contactTitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contactText {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .contactItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contactIcon {
+    color: #2a813b;
+    margin-right: 0.5rem;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .formTextarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    min-height: 120px;
+    box-sizing: border-box;
+  }
+  
+  .formButton {
+    background-color: #2a813b;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .serviceItem {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid;
+  }
+  
+  .serviceList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .serviceListItem {
+    display: flex;
+    align-items: center;
+    color: #555;
+    font-size: 0.9rem;
+  }
+  
+  .serviceListIcon {
+    margin-right: 0.5rem;
+  }

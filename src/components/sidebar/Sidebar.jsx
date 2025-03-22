@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import {
+  Bell,
   Calendar,
   ChevronDown,
+  ChevronUp,
   CircleDot,
+  CreditCard,
   FileUp,
   HelpCircle,
   Info,
@@ -11,13 +14,16 @@ import {
   PackageOpen,
   Recycle,
   Settings,
+  Shield,
+  Trash2,
   User,
 } from "lucide-react";
+import { useState } from "react";
 import "./Sidebar.css";
 import logoIcon from "../../assets/images/Logo Icon.svg";
 import CustomSwitchSelector from "../Switch/CustomSwitchSelector";
 
-const NavItem = ({ icon, label, active, hasDropdown, iconColor }) => {
+const NavItem = ({ icon, label, active, hasDropdown, iconColor, onClick, isOpen }) => {
   const getPath = (label) => {
     switch (label.toLowerCase()) {
       case "overview":
@@ -40,8 +46,6 @@ const NavItem = ({ icon, label, active, hasDropdown, iconColor }) => {
         return "/payment";
       case "report history":
         return "/history";
-      case "settings":
-        return "/settings";
       case "about":
         return "/about";
       case "help center":
@@ -50,6 +54,23 @@ const NavItem = ({ icon, label, active, hasDropdown, iconColor }) => {
         return "#";
     }
   };
+
+  // If the item has a dropdown and an onClick handler, use a div instead of a Link
+  if (hasDropdown && onClick) {
+    return (
+      <div className={`nav-item ${active ? "active" : ""} ${iconColor || ""}`} onClick={onClick}>
+        <span className="nav-icon">{icon}</span>
+        <span className="nav-label">{label}</span>
+        {hasDropdown && (
+          isOpen ? (
+            <ChevronUp size={16} className="dropdown-icon" />
+          ) : (
+            <ChevronDown size={16} className="dropdown-icon" />
+          )
+        )}
+      </div>
+    );
+  }
 
   return (
     <Link
@@ -63,9 +84,25 @@ const NavItem = ({ icon, label, active, hasDropdown, iconColor }) => {
   );
 };
 
-const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
+const SettingsSubItem = ({ icon, label, active, href }) => {
   return (
-    <div className="sidebar">
+    <Link to={`/settings${href}`} className={`settings-sub-item ${active ? "active" : ""}`}>
+      <span className="nav-icon">{icon}</span>
+      <span className="nav-label">{label}</span>
+    </Link>
+  );
+};
+
+const Sidebar = ({ isDarkMode, setIsDarkMode, activePage, activeSettingsSection }) => {
+  const [settingsOpen, setSettingsOpen] = useState(activePage === "settings");
+
+  // Toggle settings dropdown
+  const toggleSettings = () => {
+    setSettingsOpen(!settingsOpen);
+  };
+
+  return (
+    <div className={`sidebar ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="logo">
         <div className="logo-icon">
           <img src={logoIcon} alt="logo" width="50" height="50" />
@@ -118,7 +155,57 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
 
         <div className="nav-section preferences">
           <p className="nav-section-title">Preferences</p>
-          <NavItem icon={<Settings size={18} />} label="Settings" hasDropdown />
+          <NavItem 
+            icon={<Settings size={18} />} 
+            label="Settings" 
+            hasDropdown 
+            onClick={toggleSettings}
+            isOpen={settingsOpen}
+            active={activePage === "settings"}
+          />
+          
+          {/* Settings dropdown submenu */}
+          {settingsOpen && (
+            <div className="settings-submenu">
+              <SettingsSubItem 
+                icon={<Bell size={16} />} 
+                label="Notifications" 
+                href="#notifications"
+                active={activeSettingsSection === "notifications"} 
+              />
+              <SettingsSubItem 
+                icon={<User size={16} />} 
+                label="Account" 
+                href="#account"
+                active={activeSettingsSection === "account"} 
+              />
+              <SettingsSubItem 
+                icon={<Shield size={16} />} 
+                label="Privacy" 
+                href="#privacy"
+                active={activeSettingsSection === "privacy"} 
+              />
+              <SettingsSubItem 
+                icon={<Trash2 size={16} />} 
+                label="Collection Preferences" 
+                href="#collection"
+                active={activeSettingsSection === "collection"} 
+              />
+              <SettingsSubItem 
+                icon={<CreditCard size={16} />} 
+                label="Payment Methods" 
+                href="#payment"
+                active={activeSettingsSection === "payment"} 
+              />
+              <SettingsSubItem 
+                icon={<HelpCircle size={16} />} 
+                label="Help & Support" 
+                href="#help"
+                active={activeSettingsSection === "help"} 
+              />
+            </div>
+          )}
+          
           <NavItem icon={<Info size={18} />} label="About" />
           <NavItem icon={<HelpCircle size={18} />} label="Help Center" />
         </div>
