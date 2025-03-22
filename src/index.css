@@ -26,7 +26,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  justify-content: flex-start;
+  /* removed this so that the login page would be centered */
+  /* justify-content: flex-start; */
   width: 100%;
 }
 

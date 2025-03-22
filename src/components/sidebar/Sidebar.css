@@ -67,6 +67,7 @@
   border-right: 1px solid var(--border-color);
   z-index: 100;
   overflow-y: auto;
+  transition: transform 0.3s ease, width 0.3s ease;
 }
 
 /* Logo Styles */
@@ -75,6 +76,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  position: relative;
 }
 
 .logo-icon span {
@@ -86,7 +88,8 @@
   font-weight: bold;
   font-size: 1.25rem;
   color: var(--text-color);
-  padding-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  margin-top: 10px;
 }
 
 /* Navigation Container */
@@ -171,12 +174,16 @@
 }
 
 /* Theme Toggle */
+.theme-toggle-container {
+  margin: 1rem auto;
+  width: 85%;
+}
+
 .theme-toggle {
   height: 40px;
-  width: 85%;
+  width: 100%;
   background-color: var(--color-green-100);
   border-radius: var(--border-radius-full);
-  margin: 1rem auto;
 }
 
 .dark-mode .theme-toggle {
@@ -214,14 +221,92 @@
   color: var(--color-white);
 }
 
+/* Mobile Toggle Button */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 101;
+  background-color: var(--bg-sidebar);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+/* Close button inside sidebar for mobile */
+.close-sidebar {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
 /* Responsive Styles */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 250px;
+    min-width: 250px;
+  }
+
+  .nav-label {
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    width: 280px;
+    box-shadow: var(--shadow-md);
   }
 
   .sidebar.open {
     transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .close-sidebar {
+    display: block;
+  }
+
+  /* Adjust main content margin for mobile */
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 85%;
   }
 }

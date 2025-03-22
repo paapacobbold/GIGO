@@ -1,28 +1,55 @@
-import { useState } from "react";
-import {
-  Bell,
-  Calendar,
-  ChevronDown,
-  CircleDot,
-  FileUp,
-  HelpCircle,
-  Info,
-  Layout,
-  MessageSquare,
-  Moon,
-  PackageOpen,
-  Recycle,
-  Search,
-  Settings,
-  Sun,
-  User,
-} from "lucide-react";
+"use client";
+
+import { useState, useRef } from "react";
+import { FileUp } from "lucide-react";
 import "./ProfilePage.css";
 import Sidebar from "../../components/sidebar/sidebar";
 import TopBar from "../../components/TopBar/TopBar";
+import { useUser } from "../../context/UserContext";
 
 export default function ProfilePage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const fileInputRef = useRef(null);
+
+  // Get user data and update function from context
+  const { userData, updateUserData } = useUser();
+
+  // Local form state
+  const [formData, setFormData] = useState(userData);
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle profile image selection
+  const handleImageSelect = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      setFormData((prevData) => ({
+        ...prevData,
+        profileImage: imageUrl,
+      }));
+    }
+  };
+
+  // Trigger file input click
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Update the global user data
+    updateUserData(formData);
+    alert("Profile changes saved successfully!");
+  };
 
   return (
     <div className={`app-container ${isDarkMode ? "dark-mode" : ""}`}>
@@ -34,70 +61,111 @@ export default function ProfilePage() {
       />
 
       <TopBar />
+
       {/* Main Content */}
       <div className="main-content">
-        {/* Header */}
-        {/* <header className="header">
-                <div className="search-container">
-                    <Search className="search-icon" size={20} />
-                    <input type="text" placeholder="Mother Earth Day is coming..." className="search-input"  />
-                </div>
-
-                <div className="header-actions">
-                    <button className="notification-button">
-                    <Bell size={20} />
-                    </button>
-                    <div className="avatar">
-                    <span>👤</span>
-                    </div>
-                </div>
-            </header> */}
         <div className="content">
-          {/* {Profile Section} */}
+          {/* Profile Section */}
           <div className="profile-container">
             <div className="profile-header">
-              <img src="" alt="" className="profile-pic" />
+              <div className="profile-pic-container" onClick={triggerFileInput}>
+                <img
+                  src={
+                    formData.profileImage ||
+                    "/placeholder.svg?height=100&width=100"
+                  }
+                  alt=""
+                  className="profile-pic"
+                />
+                <div className="profile-pic-overlay">
+                  <FileUp size={20} />
+                  <span>Upload</span>
+                </div>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleImageSelect}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                />
+              </div>
               <div className="profile-info">
-                <h2>User</h2>
+                <h2>User Profile</h2>
                 <p>This will be displayed on your profile.</p>
               </div>
             </div>
 
-            <form className="profile-form">
+            <form className="profile-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
                   <label>First Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Last Name</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group" style={{ flex: 1 }}>
                   <label>Email</label>
-                  <input type="email" id="email-textbox" />
+                  <input
+                    type="email"
+                    id="email-textbox"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Date of Birth</label>
-                  <input type="date" />
+                  <input
+                    type="date"
+                    name="dateOfBirth"
+                    value={formData.dateOfBirth}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Phone Number</label>
-                  <input type="tel" />
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Location</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Language</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    name="language"
+                    value={formData.language}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
               <button type="submit" className="submit-btn">
@@ -107,15 +175,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-function NavItem({ icon, label, active, hasDropdown, iconColor }) {
-  return (
-    <div className={`nav-item ${active ? "active" : ""} ${iconColor || ""}`}>
-      <span className="nav-icon">{icon}</span>
-      <span className="nav-label">{label}</span>
-      {hasDropdown && <ChevronDown size={16} className="dropdown-icon" />}
     </div>
   );
 }

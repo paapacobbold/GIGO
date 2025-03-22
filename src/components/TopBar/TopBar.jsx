@@ -1,9 +1,11 @@
-import React from "react";
-import "./TopBar.css";
+"use client";
 import { Bell, Search } from "lucide-react";
-import plantImage from "../../assets/images/picture.png";
+import { useUser } from "../../context/UserContext";
+import "./TopBar.css";
 
 const TopBar = () => {
+  const { userData } = useUser();
+
   return (
     <div className="top-bar">
       <div className="search-container">
@@ -14,14 +16,26 @@ const TopBar = () => {
           className="search-input"
         />
       </div>
+
       <div className="actions">
         <div className="icon notification">
-          <Bell className="bell-icon" size={25} />
+          <Bell size={20} color="#16a34a" />
         </div>
+
         <div className="profile">
-          <img src={plantImage} alt="" className="profile-pic" />
+          <img
+            src={
+              userData?.profileImage || "/placeholder.svg?height=40&width=40"
+            }
+            alt="Profile"
+            className="profile-pic"
+          />
           <div className="profile-info">
-            <span className="name">John Doe</span>
+            <span className="name">
+              {userData?.firstName && userData?.lastName
+                ? `${userData.firstName} ${userData.lastName}`
+                : "John Doe"}
+            </span>
             <span className="role">User</span>
           </div>
         </div>

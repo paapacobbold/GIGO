@@ -1,6 +1,5 @@
 /* Top Bar Container */
 .top-bar {
-  /* when i set the position to absolute and i reduce the screen size it matches perfectly without moving further left */
   position: fixed;
   top: 0;
   right: 0;
@@ -16,39 +15,36 @@
 }
 
 /* Search Bar */
-/* .search-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #ffff;
-    padding: -2px;
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    width: 600px;
-    border: none;
-  } */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 600px;
+  margin-top: 10px;
+}
+
 .search-icon {
   position: absolute;
   left: 0.75rem;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
-  color: var(--color-gray-400);
+  color: #6b7280;
 }
 
 .search-input {
   width: 100%;
   padding: 0.5rem 1rem 0.5rem 2.5rem;
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--border-color);
-  background-color: var(--input-bg);
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
 }
-.search-bar input {
-  border: none;
+
+.search-input:focus {
   outline: none;
-  background: transparent;
-  flex: 1;
-  font-size: 14px;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
 }
+
 .search-input::placeholder {
   color: #138233;
   font-size: 14px;
@@ -62,9 +58,7 @@
   gap: 20px;
 }
 
-.icon.notification i {
-  font-size: 20px;
-  color: #16a34a;
+.icon.notification {
   cursor: pointer;
 }
 
@@ -74,12 +68,15 @@
   align-items: center;
   gap: 10px;
   padding-right: 15px;
+  cursor: pointer;
 }
 
 .profile .profile-pic {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #4caf50;
 }
 
 .profile-info {
@@ -98,7 +95,8 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .search-bar {
+  .search-container {
     width: 100%;
+    max-width: 300px;
   }
 }
