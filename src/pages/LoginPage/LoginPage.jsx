@@ -1,28 +1,32 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Add this import
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./LoginPage.css";
-
 import loginImage from "../../assets/images/login image.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, error: authError } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Your login logic here
+    setLoading(true);
+    setError("");
+
     try {
-      // After successful login
-      login(); // Update auth state
-      navigate("/overview"); // Redirect to overview page
+      await login(formData.email, formData.password);
+      navigate("/overview");
     } catch (error) {
-      console.error("Login failed:", error);
+      setError(error.message || "Failed to log in");
+    } finally {
+      setLoading(false);
     }
   };
 

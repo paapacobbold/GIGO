@@ -1,16 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './SignupPage.css';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../context/firebaseConfig";
+import "./SignupPage.css";
 
 // Import images
-import googleIcon from '../../assets/images/Vector.png';
-import facebookIcon from '../../assets/images/Group 1215.png';
-import signupImage from '../../assets/images/pana.png';
+import googleIcon from "../../assets/images/Vector.png";
+import facebookIcon from "../../assets/images/Group 1215.png";
+import signupImage from "../../assets/images/pana.png";
 
 const SignupPage = () => {
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add signup logic here
+    setLoading(true);
+    setError("");
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      await login(formData.email, formData.password);
+      navigate("/overview");
+    } catch (error) {
+      setError(error.message || "Failed to create account");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -18,22 +45,27 @@ const SignupPage = () => {
       <div className="form-section">
         <h1>Create An Account</h1>
         <p className="sub-text">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link to="/login" className="transition-link">
             Sign In
           </Link>
         </p>
 
         <form onSubmit={handleSubmit}>
-          <input type="email" id="email" placeholder='Email'required />
+          <input type="email" id="email" placeholder="Email" required />
 
-          <input type="password" id="password" placeholder='Password' required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
 
           <div className="terms">
             <input type="checkbox" id="terms" required />
             <label htmlFor="terms">
-              By creating an account, I agree to our{' '}
-              <Link to="/terms">Terms of use</Link> and{' '}
+              By creating an account, I agree to our{" "}
+              <Link to="/terms">Terms of use</Link> and{" "}
               <Link to="/privacy">Privacy Policy</Link>
             </label>
           </div>
@@ -55,7 +87,7 @@ const SignupPage = () => {
         </button>
       </div>
       <div className="image-section">
-        <img src={signupImage} alt="sign up image" className='signin-image' />
+        <img src={signupImage} alt="sign up image" className="signin-image" />
       </div>
     </div>
   );
