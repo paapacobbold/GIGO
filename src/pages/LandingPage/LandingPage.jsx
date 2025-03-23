@@ -301,7 +301,7 @@ const Footer = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              <span className="logo-text">Garbage In Garbage Out</span>
+              <span className="logo-text-Gigo">Garbage In Garbage Out</span>
             </div>
             <p className="brand-description">
               Providing innovative solutions for a sustainable future. We're
@@ -534,9 +534,9 @@ const Footer = () => {
             &copy; {currentYear} GIGO. All rights reserved.
           </div>
           <div className="footer-bottom-links">
-            <a href="#">Sitemap</a>
-            <a href="#">Accessibility</a>
-            <a href="#">Cookies</a>
+            <a href="*">Sitemap</a>
+            <a href="*">Accessibility</a>
+            <a href="*">Cookies</a>
           </div>
         </div>
       </div>
