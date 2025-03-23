@@ -1,16 +1,21 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-
-  console.log("ProtectedRoute - isAuthenticated:", isAuthenticated); // Debug log
-
-  if (!isAuthenticated) {
-    console.log("Redirecting to login..."); // Debug log
-    return <Navigate to="/login" replace />;
+  const { isAuthenticated, loading } = useAuth();
+  const location = useLocation();
+  
+  if (loading) {
+    // You might want to add a loading spinner or component here
+    return <div className="loading-container">Loading...</div>;
   }
-
+  
+  if (!isAuthenticated) {
+    // Redirect to login, but save the location they were trying to access
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  
   return children;
 };
 
