@@ -4,6 +4,10 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 
 const AuthContext = createContext(null);
@@ -49,6 +53,51 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const signup = async (email, password) => {
+    try {
+      setError(null);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(userCredential.user);
+      setIsAuthenticated(true);
+      return userCredential.user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      setError(null);
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      setUser(userCredential.user);
+      setIsAuthenticated(true);
+      return userCredential.user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
+  };
+
+  const loginWithFacebook = async () => {
+    try {
+      setError(null);
+      const provider = new FacebookAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      setUser(userCredential.user);
+      setIsAuthenticated(true);
+      return userCredential.user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
+  };
+
   const logout = async () => {
     try {
       await signOut(auth);
@@ -66,12 +115,15 @@ const AuthProvider = ({ children }) => {
     loading,
     error,
     login,
+    signup,
+    loginWithGoogle,
+    loginWithFacebook,
     logout,
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

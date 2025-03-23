@@ -46,6 +46,7 @@ const App = () => {
       "/pickup-schedule": `${appName} | Pickup Schedule`,
       "/chat": `${appName} | Support Chat`,
       "/settings": `${appName} | Settings`,
+      "/help": `${appName} | Help Center`,
       "/NotFound": `${appName} | Page Not Found`
     };
     
@@ -61,100 +62,22 @@ const App = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/recycling-tips" element={<Recycling />} />
-        <Route path="*" element={<Notfound />} />
         
         {/* Protected routes */}
-        <Route
-          path="/overview"
-          element={
-            <ProtectedRoute>
-              <Overview />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/report-waste" element={<ReportWaste />} />
-        <Route path="/subscription" element={<Subscription />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/history" element={<ReportHistory />} />
-        <Route path="/facilities" element={<Location />} />
-        <Route path="/recycling-tips" element={<Recycling />} />
-        <Route path="/pickup-schedule" element={<PickupSchedule />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/settings" element={<SettingsPage/>}/>
-        <Route path="/help" element={<HelpCenter/>} />
-        <Route
-          path="/report-waste"
-          element={
-            <ProtectedRoute>
-              <ReportWaste />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/subscription"
-          element={
-            <ProtectedRoute>
-              <Subscription />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/payment"
-          element={
-            <ProtectedRoute>
-              <Payment />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/history"
-          element={
-            <ProtectedRoute>
-              <ReportHistory />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/facilities"
-          element={
-            <ProtectedRoute>
-              <Location />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/pickup-schedule"
-          element={
-            <ProtectedRoute>
-              <PickupSchedule />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/chat"
-          element={
-            <ProtectedRoute>
-              <ChatPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <ProtectedRoute>
-              <SettingsPage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/overview" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+        <Route path="/report-waste" element={<ProtectedRoute><ReportWaste /></ProtectedRoute>} />
+        <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
+        <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+        <Route path="/history" element={<ProtectedRoute><ReportHistory /></ProtectedRoute>} />
+        <Route path="/facilities" element={<ProtectedRoute><Location /></ProtectedRoute>} />
+        <Route path="/pickup-schedule" element={<ProtectedRoute><PickupSchedule /></ProtectedRoute>} />
+        <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+        <Route path="/help" element={<ProtectedRoute><HelpCenter /></ProtectedRoute>} />
+        
+        {/* 404 route */}
+        <Route path="*" element={<Notfound />} />
       </Routes>
     </AuthProvider>
   );
