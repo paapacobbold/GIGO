@@ -5,13 +5,6 @@
   --border-gray: #e2e8f0;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 body {
   background-color: var(--light-gray);
   min-height: 100vh;
@@ -23,45 +16,39 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   max-width: 1200px;
   background: #fff;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  /* Removed fixed margin-left: 25% */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-section {
   width: 50%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
 }
 
 .form-section h1 {
-  font-size: 2rem;
+  font-size: 30px;
   font-weight: 700;
-  margin-bottom: 10px;
-  color: var(--primary-green);
-  /* Removed fixed margin-left */
-}
-.form-section p {
-  display: flex;
-  justify-content: center;
+  margin-left: 25px;
+  text-align: left;
 }
 
 .sub-text {
   font-size: 14px;
   margin: 5px 0 20px;
-  color: var(--text-gray);
-  /* Removed fixed margin-left */
+  margin-left: 45px;
+  text-align: left;
 }
 
 .sub-text a {
-  color: var(--primary-green);
+  color: #007bff;
   text-decoration: none;
   font-weight: 500;
 }
@@ -73,7 +60,6 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 label {
@@ -84,89 +70,72 @@ label {
 }
 
 input {
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid var(--border-gray);
-  border-radius: 8px;
-  width: 100%; /* Changed from 70% to 100% */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
   font-size: 14px;
 }
 
 .terms {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   font-size: 12px;
-  margin-bottom: 20px;
-  width: 100%; /* Changed from 70% to 100% */
-  color: var(--text-gray);
+  margin-top: -5px;
+  width: 70%;
+  color: #666;
 }
 
 .terms input {
   margin: 0;
   width: 16px;
   height: 16px;
-  margin-top: 2px; /* Align checkbox with text */
-}
-
-.terms label {
-  margin: 0;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 1.4;
 }
 
 .terms a {
-  color: var(--primary-green);
+  color: #666;
   text-decoration: none;
 }
 
 .terms a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Add underline on hover */
 }
 
 .signup-btn {
-  width: 100%; /* Changed from 70% to 100% */
+  width: 70%;
   padding: 12px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
-  background-color: var(--primary-green);
+  background-color: #1a522a;
   color: white;
   transition: background 0.3s ease-in-out;
 }
 
 .signup-btn:hover {
-  background: #14532d;
+  background: #003300;
 }
 
 /* Divider Styling */
 .divider {
-  width: 100%; /* Changed from 62% to 100% */
+  width: 62%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 20px 0;
-  position: relative;
-  text-align: center;
+  margin: 20px;
+  color: #979797;
 }
-
-/* .divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid var(--border-gray);
-  margin: auto 10px;
-} */
 
 /* Social Buttons */
 .social-btn {
-  width: 100%; /* Changed from 70% to 100% */
+  width: 70%;
   padding: 12px;
-  border: 1px solid var(--border-gray);
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
   background: #fff;
   margin-top: 10px;
   cursor: pointer;
@@ -206,20 +175,13 @@ input {
 
 .image-section {
   width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--light-gray);
-  border-radius: 0 8px 8px 0;
-  padding: 20px;
 }
 
 .image-section img {
   width: 100%;
-  height: auto;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .fade-out {

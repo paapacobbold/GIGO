@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+// import { motion } from "framer-motion";
 import "./LandingPage.css";
 // Import all images
 import logoIcon from "../../assets/images/Logo Icon.svg";
@@ -17,67 +18,149 @@ import zibikImage from "../../assets/images/zibik-iR4mClggzEU-unsplash.jpg";
 const processSteps = [
   {
     icon: group4,
-    title: "Pickup",
+    title: "Smart Pickup",
     description:
-      "We help you get rid of waste easily with different types of bins and collection services. Our bins are designed to keep waste organized and clean. We also provide guidance on what can and cannot be recycled.",
+      "We revolutionize waste collection with our smart bin technology and on-demand pickup services. Our eco-friendly containers are designed for optimal waste separation, making recycling effortless for you.",
   },
   {
     icon: group5,
-    title: "Collection",
+    title: "Efficient Collection",
     description:
-      "Our efficient collection system ensures timely waste pickup from your location. We use modern vehicles and tracking technology to optimize routes. Our trained staff handles waste safely and professionally.",
+      "Our AI-optimized routes ensure timely waste collection while minimizing carbon emissions. Our professional team uses state-of-the-art equipment to safely handle all types of waste with minimal environmental impact.",
   },
   {
     icon: group6,
-    title: "Recycling",
+    title: "Advanced Recycling",
     description:
-      "We turn old things into new things to save the planet and reduce waste. Our recycling program helps conserve natural resources and reduces landfill waste. We partner with local recycling facilities to ensure responsible processing.",
+      "Transform waste into valuable resources through our cutting-edge recycling processes. We recover up to 90% of materials, significantly reducing landfill waste and creating a circular economy that benefits our planet.",
   },
   {
     icon: group7,
-    title: "Cleanup",
+    title: "Environmental Restoration",
     description:
-      "We keep public places clean and beautiful so everyone can enjoy them. Our team uses eco-friendly cleaning products and equipment to protect the environment. We also work with local communities to promote cleanliness and sustainability.",
+      "Beyond waste management, we actively participate in community cleanup initiatives and habitat restoration projects. Our comprehensive approach ensures a cleaner environment and healthier ecosystems for future generations.",
   },
 ];
+
 const serviceData = [
   {
     image: jasminImage,
     alt: "Environmental Services",
+    title: "Sustainable Environmental Solutions",
     description:
-      "We deliver sustainable and eco-friendly waste management solutions, helping communities reduce pollution and maintain a cleaner, healthier environment for future generations. Our commitment to responsible waste disposal ensures a greener planet.",
+      "Our comprehensive environmental services combine innovation with sustainability to create measurable positive impact. We implement cutting-edge technologies that reduce pollution, conserve resources, and protect biodiversity.",
   },
   {
     image: liHaoImage,
     alt: "Garbage Collection",
+    title: "Smart Waste Collection",
     description:
-      "Our reliable garbage collection services keep your surroundings clean and waste-free. We ensure timely pickups, proper disposal, and adherence to environmental regulations, promoting a hygienic and healthier living and working environment for all.",
+      "Experience waste management reimagined with our IoT-enabled collection system. Real-time monitoring, predictive analytics, and route optimization ensure timely service while reducing our carbon footprint by up to 30%.",
   },
   {
     image: towfiquImage,
     alt: "Recycling Services",
+    title: "Advanced Recycling Programs",
     description:
-      "Recycling is at the heart of what we do. We transform waste into valuable resources, reducing landfill waste and conserving natural materials. Join us in making sustainable choices that contribute to a circular economy and a cleaner future.",
+      "Our state-of-the-art recycling facilities process multiple waste streams with 90% recovery rates. We transform waste into valuable resources through mechanical and chemical recycling processes, supporting a truly circular economy.",
   },
   {
     image: zibikImage,
     alt: "Additional Services",
+    title: "Specialized Waste Solutions",
     description:
-      "Beyond waste management, we offer specialized services, including hazardous waste disposal, composting solutions, and bulk waste removal. Our goal is to provide innovative solutions tailored to your specific needs while ensuring environmental responsibility.",
+      "From hazardous materials to electronic waste, our specialized services ensure safe handling and environmentally responsible disposal. We provide tailored solutions for residential, commercial, and industrial clients.",
   },
+];
+
+// Testimonials data
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "Residential Customer",
+    image: "https://randomuser.me/api/portraits/women/32.jpg",
+    text: "GIGO has completely transformed how our family handles waste. Their app makes scheduling pickups so easy, and their recycling program has helped us reduce our landfill waste by over 70%!",
+  },
+  {
+    name: "Michael Chen",
+    role: "Business Owner",
+    image: "https://randomuser.me/api/portraits/men/54.jpg",
+    text: "As a restaurant owner, proper waste management is crucial. GIGO's commercial services have not only improved our sustainability practices but also saved us money. Their team is professional and reliable.",
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Community Organizer",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    text: "Working with GIGO on our neighborhood cleanup initiative was incredible. Their expertise and resources helped us remove over 2 tons of waste and establish ongoing recycling programs.",
+  },
+];
+
+// Stats data
+const statsData = [
+  { value: "10M+", label: "Tons of Waste Recycled" },
+  { value: "30%", label: "Carbon Footprint Reduction" },
+  { value: "500+", label: "Communities Served" },
+  { value: "95%", label: "Customer Satisfaction" },
 ];
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isVisible, setIsVisible] = useState({});
+  const processRef = useRef(null);
+  const servicesRef = useRef(null);
+  const aboutRef = useRef(null);
+  const statsRef = useRef(null);
 
   // Toggle menu function
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Auto-rotate testimonials
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Scroll animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const sections = [
+      processRef.current,
+      servicesRef.current,
+      aboutRef.current,
+      statsRef.current,
+    ];
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
+
   return (
     <>
-      <nav>
+      <nav className="navbar">
         <div className="logo">
           <div className="logo-circle">
             <img
@@ -85,12 +168,16 @@ const LandingPage = () => {
               alt="logo"
               width="40"
               height="40"
+              className="logo-spin"
             />
           </div>
-          <span>GIGO</span>
+          <span className="logo-text">GIGO</span>
         </div>
 
-        <div className="menu-toggle" onClick={toggleMenu}>
+        <div
+          className={`menu-toggle ${isMenuOpen ? "active" : ""}`}
+          onClick={toggleMenu}
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -99,23 +186,27 @@ const LandingPage = () => {
         <div className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <a href="#" className="nav-link">
+                Home
+              </a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a href="#about" className="nav-link">
+                About
+              </a>
             </li>
             <li>
-              <a href="#">Services</a>
+              <a href="#services" className="nav-link">
+                Services
+              </a>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <a href="#contact" className="nav-link">
+                Contact
+              </a>
             </li>
             <li>
-              <Link
-                to="/login"
-                className="btn-primary"
-                style={{ color: "white" }}
-              >
+              <Link to="/login" className="btn-primary login-btn">
                 Log In
               </Link>
             </li>
@@ -123,17 +214,77 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      {/* Home Image Section */}
-      <div className="home-image">
-        <img src={plantImage || "/placeholder.svg"} alt="A plant image" />
+      {/* Hero Section */}
+      <div className="hero-section">
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="text-gradient">Sustainable Solutions</span> for a
+            Cleaner Tomorrow
+          </h1>
+          <p className="hero-subtitle">
+            Revolutionizing waste management with innovative technology and
+            eco-friendly practices
+          </p>
+          <div className="hero-buttons">
+            <Link to="/services" className="btn-primary">
+              Explore Services
+            </Link>
+            <a href="#contact" className="btn-secondary">
+              Get Started
+            </a>
+          </div>
+        </div>
+        <div className="hero-image-container">
+          <img
+            src={plantImage || "/placeholder.svg"}
+            alt="Sustainable future"
+            className="hero-image"
+          />
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div
+        id="stats-section"
+        ref={statsRef}
+        className={`stats-section ${
+          isVisible["stats-section"] ? "animate-in" : ""
+        }`}
+      >
+        <div className="stats-container">
+          {statsData.map((stat, index) => (
+            <div
+              key={index}
+              className="stat-item"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Working Process Section */}
-      <div className="working-process">
-        <h1>Our Working Process</h1>
+      <div
+        id="process-section"
+        ref={processRef}
+        className={`working-process ${
+          isVisible["process-section"] ? "animate-in" : ""
+        }`}
+      >
+        <h2 className="section-title">Our Innovative Process</h2>
+        <p className="section-subtitle">
+          Transforming waste management through technology and sustainability
+        </p>
+
         <div className="process-steps">
           {processSteps.map((step, index) => (
-            <div key={index} className="process-step">
+            <div
+              key={index}
+              className="process-step"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
               <div className="icon-circle">
                 <img
                   src={step.icon || "/placeholder.svg"}
@@ -148,70 +299,162 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Video Section */}
-      <div className="video-container">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/3JZ_D3ELwOQ"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+      {/* Video Section with Caption */}
+      <div className="video-section">
+        <div className="video-content">
+          <h2 className="video-title">See Our Impact in Action</h2>
+          <p className="video-description">
+            Discover how our innovative approach to waste management is creating
+            a cleaner, more sustainable future for communities worldwide.
+          </p>
+        </div>
+        <div className="video-container">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/3JZ_D3ELwOQ"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="testimonials-section">
+        <h2 className="section-title">What Our Clients Say</h2>
+        <div className="testimonials-container">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className={`testimonial-card ${
+                index === activeTestimonial ? "active" : ""
+              }`}
+              style={{
+                transform: `translateX(${(index - activeTestimonial) * 100}%)`,
+              }}
+            >
+              <div className="testimonial-content">
+                <div className="quote-icon">❝</div>
+                <p className="testimonial-text">{testimonial.text}</p>
+                <div className="testimonial-author">
+                  <img
+                    src={testimonial.image || "/placeholder.svg"}
+                    alt={testimonial.name}
+                    className="author-image"
+                  />
+                  <div className="author-info">
+                    <h4 className="author-name">{testimonial.name}</h4>
+                    <p className="author-role">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="testimonial-dots">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              className={`dot ${index === activeTestimonial ? "active" : ""}`}
+              onClick={() => setActiveTestimonial(index)}
+              aria-label={`View testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Services Section */}
-      <div className="our-services">
-        <h1>Our Services</h1>
-        <div className="os-col">
+      <div
+        id="services"
+        ref={servicesRef}
+        className={`our-services ${isVisible["services"] ? "animate-in" : ""}`}
+      >
+        <h2 className="section-title">Our Premium Services</h2>
+        <p className="section-subtitle">
+          Comprehensive waste management solutions for a sustainable future
+        </p>
+
+        <div className="services-grid">
           {serviceData.map((service, index) => (
-            <div className="os-row" key={index}>
-              <img
-                src={service.image || "/placeholder.svg"}
-                alt={service.alt}
-                width="500"
-                height="300"
-              />
-              <p>{service.description}</p>
+            <div
+              key={index}
+              className="service-card"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="service-image-container">
+                <img
+                  src={service.image || "/placeholder.svg"}
+                  alt={service.alt}
+                  className="service-image"
+                />
+              </div>
+              <div className="service-content">
+                <h3 className="service-title">{service.title}</h3>
+                <p className="service-description">{service.description}</p>
+                <a href="#" className="service-link">
+                  Learn more <span className="arrow">→</span>
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* About Us Section */}
-      <div className="about-us">
+      <div
+        id="about"
+        ref={aboutRef}
+        className={`about-us ${isVisible["about"] ? "animate-in" : ""}`}
+      >
         <div className="aboutus-image">
-          <img src={aboutImage || "/placeholder.svg"} alt="About Us" />
+          <img
+            src={aboutImage || "/placeholder.svg"}
+            alt="About Us"
+            className="about-image"
+          />
         </div>
         <div className="about-us-texts">
-          <h1 className="heading">About Us</h1>
-          <div className="underline1" />
-          <p className="sub">
-            Trusted Experts in Waste <br /> Management & <br /> Recycling
+          <span className="section-tag">Our Story</span>
+          <h2 className="section-title">About Us</h2>
+          <div className="underline1"></div>
+          <p className="about-tagline">
+            Pioneering Sustainable Waste Management & Environmental Innovation
           </p>
-          <div className="underline2" />
-          <p className="main">
-            We are a team of dedicated professionals committed to providing
-            sustainable waste management solutions for a cleaner and greener
-            future. Our mission is to promote responsible waste disposal
-            practices that protect the environment and preserve natural
-            resources. With years of experience in the industry, we offer
-            reliable and efficient services to meet the needs of households,
-            businesses, and industrial facilities. Partner with us to make a
-            positive impact on the planet and create a healthier community for
-            generations to come.
+          <div className="underline2"></div>
+          <p className="about-description">
+            Founded with a vision to revolutionize waste management, GIGO has
+            grown from a small local initiative to a leading environmental
+            solutions provider. Our journey began with a simple mission: to
+            create a cleaner world through innovative waste management.
+            <br />
+            <br />
+            Today, we combine cutting-edge technology with sustainable practices
+            to offer comprehensive waste solutions that benefit both communities
+            and the planet. Our team of environmental experts, engineers, and
+            sustainability advocates work tirelessly to develop new approaches
+            that maximize resource recovery and minimize environmental impact.
+            <br />
+            <br />
+            We believe that proper waste management is not just about
+            disposal—it's about creating a circular economy where materials are
+            reused, recycled, and repurposed. Join us in our mission to
+            transform waste challenges into opportunities for environmental
+            stewardship.
           </p>
-          <a href="/our-story" className="Our-storybtn">
-            Our Story
+          <a href="/our-story" className="btn-primary about-btn">
+            Discover Our Journey
           </a>
         </div>
       </div>
 
       {/* Contact Form Section */}
-      <div className="contact-form">
-        <ContactDetails />
-        <ContactForm />
+      <div id="contact" className="contact-section">
+        <div className="contact-container">
+          <ContactDetails />
+          <ContactForm />
+        </div>
       </div>
 
       {/* Footer Section */}
@@ -223,14 +466,98 @@ const LandingPage = () => {
 // Separate components for better organization
 const ContactDetails = () => (
   <div className="contact-details">
-    <h2>Contact Us</h2>
-    <p className="sub-contact-detail" style={{ marginBottom: "40px" }}>
-      Take a step towards less waste today!
+    <span className="section-tag">Get In Touch</span>
+    <h2 className="contact-title">Contact Us</h2>
+    <p className="contact-subtitle">
+      Ready to transform your waste management approach? Reach out today and
+      take the first step toward a more sustainable future.
     </p>
-    <p>TEL: (99) 999 998 777</p>
-    <p>EMAIL: info@gigo.com</p>
-    <p>ADDRESS: 7864 2ND ST NJ, ANYWHERE</p>
-    <div className="icons">
+
+    <div className="contact-info">
+      <div className="contact-item">
+        <div className="contact-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <div>
+          <h4>Call Us</h4>
+          <p>(99) 999 998 777</p>
+        </div>
+      </div>
+
+      <div className="contact-item">
+        <div className="contact-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M22 6l-10 7L2 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <div>
+          <h4>Email Us</h4>
+          <p>info@gigo.com</p>
+        </div>
+      </div>
+
+      <div className="contact-item">
+        <div className="contact-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle
+              cx="12"
+              cy="10"
+              r="3"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <div>
+          <h4>Visit Us</h4>
+          <p>7864 2ND ST NJ, ANYWHERE</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="social-links">
       <a href="#" className="social-link" aria-label="Facebook">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -303,45 +630,135 @@ const ContactDetails = () => (
           />
         </svg>
       </a>
-      <a href="#" className="social-link" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M22.54 6.42C22.4212 5.94541 22.1793 5.51057 21.8387 5.15941C21.498 4.80824 21.0708 4.55318 20.6 4.42C18.88 4 12 4 12 4C12 4 5.12 4 3.4 4.46C2.92922 4.59318 2.50197 4.84824 2.16134 5.19941C1.82071 5.55057 1.57878 5.98541 1.46 6.46C1.14521 8.20556 0.991235 9.97631 1 11.75C0.988687 13.537 1.14266 15.3213 1.46 17.08C1.57959 17.5398 1.82069 17.9581 2.15846 18.3016C2.49623 18.6451 2.91872 18.897 3.38 19.02C5.1 19.46 12 19.46 12 19.46C12 19.46 18.88 19.46 20.6 19.02C21.0708 18.8868 21.498 18.6318 21.8387 18.2806C22.1793 17.9294 22.4212 17.4946 22.54 17.02C22.8524 15.2756 23.0063 13.5059 23 11.73C23.0113 9.94303 22.8573 8.15877 22.54 6.4V6.42Z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9.75 15.02L15.5 11.75L9.75 8.48001V15.02Z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </a>
     </div>
   </div>
 );
 
 const ContactForm = () => {
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    message: "",
+    submitted: false,
+    loading: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add form submission logic here
+    setFormState((prev) => ({ ...prev, loading: true }));
+
+    // Simulate form submission
+    setTimeout(() => {
+      setFormState((prev) => ({
+        ...prev,
+        submitted: true,
+        loading: false,
+        name: "",
+        email: "",
+        message: "",
+      }));
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setFormState((prev) => ({ ...prev, submitted: false }));
+      }, 5000);
+    }, 1500);
   };
 
   return (
     <div className="form-section">
-      <h2>GET IN TOUCH</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Enter Your Name" required />
-        <input type="email" placeholder="Enter Your Email" required />
-        <textarea rows="8" placeholder="Message" required />
-        <button type="submit" className="send-button">
-          Send
-        </button>
-      </form>
+      <h2 className="form-title">Send Us a Message</h2>
+      {formState.submitted ? (
+        <div className="success-message">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="success-icon"
+          >
+            <path
+              d="M22 11.08V12a10 10 0 11-5.93-9.14"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M22 4L12 14.01l-3-3"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <h3>Message Sent Successfully!</h3>
+          <p>Thank you for reaching out. We'll get back to you shortly.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="name">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formState.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="message">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formState.message}
+              onChange={handleChange}
+              rows="6"
+              placeholder="How can we help you?"
+              required
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            className={`send-button ${formState.loading ? "loading" : ""}`}
+            disabled={formState.loading}
+          >
+            {formState.loading ? (
+              <>
+                <span className="spinner"></span>
+                <span>Sending...</span>
+              </>
+            ) : (
+              "Send Message"
+            )}
+          </button>
+        </form>
+      )}
     </div>
   );
 };
@@ -349,16 +766,24 @@ const ContactForm = () => {
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && email.includes("@")) {
-      setSubscribed(true);
-      setEmail("");
-      // Here you would typically send the email to your backend
+      setLoading(true);
+
+      // Simulate API call
       setTimeout(() => {
-        setSubscribed(false);
-      }, 3000);
+        setSubscribed(true);
+        setEmail("");
+        setLoading(false);
+
+        // Reset after 5 seconds
+        setTimeout(() => {
+          setSubscribed(false);
+        }, 5000);
+      }, 1500);
     }
   };
 
@@ -375,33 +800,14 @@ const Footer = () => {
                 alt="Garbage In Garbage Out Logo"
                 width="40"
                 height="40"
+                className="footer-logo-img"
               />
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <span className="logo-text">Garbage In Garbage Out</span>
+              <span className="logo-text-Gigo">Garbage In Garbage Out</span>
             </div>
             <p className="brand-description">
-              Providing innovative solutions for a sustainable future. We're
-              committed to making a positive impact on our planet.
+              Leading the way in sustainable waste management solutions. Our
+              innovative approach combines technology and environmental
+              responsibility to create a cleaner, greener future.
             </p>
             <div className="social-links">
               <a href="#" className="social-link" aria-label="Facebook">
@@ -492,28 +898,6 @@ const Footer = () => {
                   />
                 </svg>
               </a>
-              <a href="#" className="social-link" aria-label="YouTube">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M22.54 6.42C22.4212 5.94541 22.1793 5.51057 21.8387 5.15941C21.498 4.80824 21.0708 4.55318 20.6 4.42C18.88 4 12 4 12 4C12 4 5.12 4 3.4 4.46C2.92922 4.59318 2.50197 4.84824 2.16134 5.19941C1.82071 5.55057 1.57878 5.98541 1.46 6.46C1.14521 8.20556 0.991235 9.97631 1 11.75C0.988687 13.537 1.14266 15.3213 1.46 17.08C1.57959 17.5398 1.82069 17.9581 2.15846 18.3016C2.49623 18.6451 2.91872 18.897 3.38 19.02C5.1 19.46 12 19.46 12 19.46C12 19.46 18.88 19.46 20.6 19.02C21.0708 18.8868 21.498 18.6318 21.8387 18.2806C22.1793 17.9294 22.4212 17.4946 22.54 17.02C22.8524 15.2756 23.0063 13.5059 23 11.73C23.0113 9.94303 22.8573 8.15877 22.54 6.4V6.42Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9.75 15.02L15.5 11.75L9.75 8.48001V15.02Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
             </div>
           </div>
 
@@ -543,19 +927,19 @@ const Footer = () => {
               <h3>Services</h3>
               <ul>
                 <li>
-                  <a href="#">Consulting</a>
+                  <a href="#">Residential Pickup</a>
                 </li>
                 <li>
-                  <a href="#">Implementation</a>
+                  <a href="#">Commercial Solutions</a>
                 </li>
                 <li>
-                  <a href="#">Training</a>
+                  <a href="#">Recycling Programs</a>
                 </li>
                 <li>
-                  <a href="#">Support</a>
+                  <a href="#">Waste Audits</a>
                 </li>
                 <li>
-                  <a href="#">Maintenance</a>
+                  <a href="#">Special Disposal</a>
                 </li>
               </ul>
             </div>
@@ -564,10 +948,10 @@ const Footer = () => {
               <h3>Resources</h3>
               <ul>
                 <li>
-                  <a href="#">Blog</a>
+                  <a href="#">Sustainability Blog</a>
                 </li>
                 <li>
-                  <a href="#">Guides</a>
+                  <a href="#">Recycling Guide</a>
                 </li>
                 <li>
                   <a href="#">Case Studies</a>
@@ -576,7 +960,7 @@ const Footer = () => {
                   <a href="#">FAQ</a>
                 </li>
                 <li>
-                  <a href="#">Documentation</a>
+                  <a href="#">Educational Materials</a>
                 </li>
               </ul>
             </div>
@@ -594,7 +978,7 @@ const Footer = () => {
                   <a href="#">Cookie Policy</a>
                 </li>
                 <li>
-                  <a href="#">GDPR</a>
+                  <a href="#">Environmental Compliance</a>
                 </li>
                 <li>
                   <a href="#">Accessibility</a>
@@ -605,8 +989,11 @@ const Footer = () => {
         </div>
 
         <div className="footer-newsletter">
-          <h3>Subscribe to our newsletter</h3>
-          <p>Stay updated with our latest news and offers.</p>
+          <h3>Join Our Sustainability Movement</h3>
+          <p>
+            Subscribe to receive eco-friendly tips, industry updates, and
+            exclusive offers.
+          </p>
 
           <form onSubmit={handleSubmit} className="newsletter-form">
             <div className="form-group">
@@ -617,10 +1004,39 @@ const Footer = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit">Subscribe</button>
+              <button
+                type="submit"
+                className={loading ? "loading" : ""}
+                disabled={loading}
+              >
+                {loading ? <span className="spinner"></span> : "Subscribe"}
+              </button>
             </div>
             {subscribed && (
-              <div className="success-message">Thank you for subscribing!</div>
+              <div className="success-message">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="success-icon"
+                >
+                  <path
+                    d="M22 11.08V12a10 10 0 11-5.93-9.14"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M22 4L12 14.01l-3-3"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span>Thank you for subscribing to our newsletter!</span>
+              </div>
             )}
           </form>
         </div>
@@ -639,4 +1055,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default LandingPage;
