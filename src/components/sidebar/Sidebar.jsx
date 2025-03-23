@@ -1,27 +1,11 @@
-import { Link } from "react-router-dom";
-import {
-  Bell,
-  Calendar,
-  ChevronDown,
-  ChevronUp,
-  CircleDot,
-  CreditCard,
-  FileUp,
-  HelpCircle,
-  Info,
-  Layout,
-  MessageSquare,
-  PackageOpen,
-  Recycle,
-  Settings,
-  Shield,
-  Trash2,
-  User,
+import { Link, useNavigate } from "react-router-dom";
+import { Bell, Calendar, ChevronDown, ChevronUp, CircleDot, CreditCard, FileUp, HelpCircle, Info, Layout, LogOut, MessageSquare, PackageOpen, Recycle, Settings, Shield, Trash2, User, 
 } from "lucide-react";
 import { useState } from "react";
 import "./Sidebar.css";
 import logoIcon from "../../assets/images/Logo Icon.svg";
 import CustomSwitchSelector from "../Switch/CustomSwitchSelector";
+import { useAuth } from "../../context/AuthContext";
 
 const NavItem = ({ icon, label, active, hasDropdown, iconColor, onClick, isOpen }) => {
   const getPath = (label) => {
@@ -95,6 +79,17 @@ const SettingsSubItem = ({ icon, label, active, href }) => {
 
 const Sidebar = ({ isDarkMode, setIsDarkMode, activePage, activeSettingsSection }) => {
   const [settingsOpen, setSettingsOpen] = useState(activePage === "settings");
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   // Toggle settings dropdown
   const toggleSettings = () => {
@@ -199,22 +194,27 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage, activeSettingsSection 
               />
               <SettingsSubItem 
                 icon={<HelpCircle size={16} />} 
-                label="Help & Support" 
+                label="Help Center" 
                 href="#help"
                 active={activeSettingsSection === "help"} 
               />
-            </div>
+              </div>
           )}
           
           <NavItem icon={<Info size={18} />} label="About" />
           <NavItem icon={<HelpCircle size={18} />} label="Help Center" />
         </div>
 
+        <div className="nav-item" onClick={handleLogout}>
+        <span className="nav-icon"><LogOut size={16} /></span>
+        <span className="nav-label">Logout</span>
+      </div>
+    </div>
+
         <div className="theme-toggle-container">
           <CustomSwitchSelector isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
         </div>
       </div>
-    </div>
   );
 };
 
