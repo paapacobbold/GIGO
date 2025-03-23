@@ -203,6 +203,16 @@
   font-weight: 500;
 }
 
+/* Add this to your Sidebar.css file */
+.nav-item.logout {
+  margin-top: 0.5rem;
+  color: var(--color-red-500);
+}
+
+.nav-item.logout:hover {
+  background-color: rgba(239, 68, 68, 0.1); /* Light red background on hover */
+}
+
 /* Hover state for active sub-items */
 .settings-sub-item.active:hover {
   background-color: var(--active-hover-bg);
