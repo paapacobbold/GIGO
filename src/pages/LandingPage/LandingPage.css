@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+
 /* Reset default styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -35,8 +38,6 @@
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
-
 body {
   min-height: 100vh;
   width: 100%;
@@ -70,12 +71,16 @@ img {
   height: auto;
 }
 
+/* UPDATED: Make section titles bigger, centered, and green */
 .section-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 10px;
+  margin-bottom: 1.5rem;
   color: var(--primary);
   position: relative;
   text-align: center;
+  font-weight: large;
+  text-transform: uppercase;
+  letter-spacing: 5px;
 }
 
 .section-subtitle {
@@ -104,7 +109,7 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  /* text-fill-color: transparent; */
 }
 
 /* Buttons */
@@ -233,8 +238,8 @@ img {
 }
 
 .logo-circle {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -245,7 +250,7 @@ img {
   transition: transform 0.9s ease;
 }
 
-.logo:hover .logo-spin {
+.logo-spin:hover {
   transform: rotate(360deg);
 }
 
@@ -452,6 +457,53 @@ img {
   transform: translateY(0);
 }
 
+/* Add this specific style for the "Our Innovative Process" section */
+.working-process .section-title,
+.testimonials-section .section-title,
+.our-services .section-title {
+  font-size: 3.5rem;
+  color: #15803d;
+  text-align: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+/* Add decorative underline to all three section headers */
+.working-process .section-title::after,
+.testimonials-section .section-title::after,
+.our-services .section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 5px;
+  background-color: #15803d;
+  border-radius: 5px;
+}
+
+/* Add a subtle animation */
+@keyframes titlePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.working-process .section-title {
+  animation: titlePulse 3s infinite ease-in-out;
+}
+
 .process-steps {
   display: flex;
   flex-wrap: wrap;
@@ -459,6 +511,7 @@ img {
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  padding-top: 30px;
 }
 
 .process-step {
@@ -1248,7 +1301,7 @@ img {
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
   .section-title {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
   }
 
   .hero-title {
@@ -1281,11 +1334,18 @@ img {
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .contact-container {
     gap: 3rem;
+  }
+
+  /* Responsive adjustments */
+  .working-process .section-title,
+  .testimonials-section .section-title,
+  .our-services .section-title {
+    font-size: 3rem;
   }
 }
 
@@ -1337,7 +1397,7 @@ img {
   }
 
   .section-title {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 
   .section-subtitle {
@@ -1359,6 +1419,13 @@ img {
   .footer-links-column {
     min-width: 120px;
   }
+
+  /* Responsive adjustments */
+  .working-process .section-title,
+  .testimonials-section .section-title,
+  .our-services .section-title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1379,7 +1446,7 @@ img {
   }
 
   .section-title {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 
   .contact-title,
@@ -1412,6 +1479,14 @@ img {
 
   .footer-bottom-links {
     justify-content: center;
+  }
+
+  /* Responsive adjustments */
+  .working-process .section-title,
+  .testimonials-section .section-title,
+  .our-services .section-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
   }
 }
 

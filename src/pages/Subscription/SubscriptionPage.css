@@ -81,9 +81,9 @@ body {
   margin-left: 290px; /* Match sidebar width */
   background-color: var(--bg-main);
   position: relative;
-  margin-top: 50px;  
+  margin-top: 50px;
 }
-.content1{
+.content1 {
   padding: 2rem;
   max-width: 1380px;
   margin: 0 2rem 0 0; /* Right margin only */
@@ -115,7 +115,6 @@ body {
   /*added the below too as well*/
   justify-content: center;
   flex-direction: column;
-
 }
 
 .tier-name {

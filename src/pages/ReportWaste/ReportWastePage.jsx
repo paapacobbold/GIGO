@@ -750,7 +750,7 @@ export default function ReportWaste() {
       <Sidebar
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        activePage="subscription"
+        activePage=""
       />
       <TopBar />
       <div className="main-content">

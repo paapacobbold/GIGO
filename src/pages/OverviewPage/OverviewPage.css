@@ -306,11 +306,11 @@ body {
 }
 
 .section-title {
-  color: var(--text-color);
-  font-weight: bold;
-  font-size: 40px;
-  text-align: center;
-  padding-bottom: 50px;
+  font-size: 1rem;
+  color: #0e7a3c;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 35px;
 }
 
 /* Update Process Steps Layout */
@@ -767,7 +767,7 @@ body {
   }
 
   .section-title {
-    font-size: 32px;
+    font-size: 25px;
   }
 
   .banner-container {

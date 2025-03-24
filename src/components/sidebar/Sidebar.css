@@ -337,3 +337,84 @@
     transform: translateX(0);
   }
 }
+/* added this css for the clickable components after clicking */
+/* Active state */
+.nav-item.active {
+  background-color: var(--active-bg);
+  color: var(--active-color);
+  position: relative;
+}
+
+/* Add a left border indicator for active items */
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--active-color);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Hover state for active items */
+.nav-item.active:hover {
+  background-color: var(--active-hover-bg);
+  text-decoration: none;
+}
+
+/* Pressed/active state for buttons when clicked */
+.nav-item:active {
+  transform: scale(0.98);
+  background-color: var(--active-hover-bg);
+  transition: transform 0.1s, background-color 0.1s;
+}
+
+/* Pressed state for settings sub-items */
+.settings-sub-item:active {
+  transform: scale(0.98);
+  background-color: var(--active-hover-bg);
+  transition: transform 0.1s, background-color 0.1s;
+}
+
+/* Add a ripple effect for better touch feedback */
+.nav-item,
+.settings-sub-item {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+/* Ripple animation for click feedback */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Add this to your existing CSS */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 10px;
+  height: 10px;
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* Enhanced mobile touch feedback */
+@media (max-width: 768px) {
+  .nav-item:active,
+  .settings-sub-item:active {
+    transform: scale(0.97);
+    background-color: var(--active-hover-bg);
+  }
+
+  /* Larger ripple effect for touch devices */
+  .ripple {
+    width: 15px;
+    height: 15px;
+  }
+}

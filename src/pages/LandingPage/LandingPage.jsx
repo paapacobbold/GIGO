@@ -14,6 +14,8 @@ import jasminImage from "../../assets/images/jas-min-DR2jtLy8Fe4-unsplash.jpg";
 import liHaoImage from "../../assets/images/li-hao-b25tsR8dBh0-unsplash.jpg";
 import towfiquImage from "../../assets/images/towfiqu-barbhuiya-ho-p7qLBewk-unsplash.jpg";
 import zibikImage from "../../assets/images/zibik-iR4mClggzEU-unsplash.jpg";
+import solutions from "../../assets/images/solutions.jpg";
+import bulk from "../../assets/images/bulk.jpg";
 
 const processSteps = [
   {
@@ -70,6 +72,20 @@ const serviceData = [
     title: "Specialized Waste Solutions",
     description:
       "From hazardous materials to electronic waste, our specialized services ensure safe handling and environmentally responsible disposal. We provide tailored solutions for residential, commercial, and industrial clients.",
+  },
+  {
+    image: solutions,
+    alt: "Recycling Solutions",
+    title: "Sustainable Recycling Solutions",
+    description:
+      "We help businesses and communities reduce waste through innovative recycling programs. Our services ensure that paper, plastic, metal, and other materials are efficiently processed and repurposed.",
+  },
+  {
+    image: bulk,
+    alt: "Bulk Waste Collection",
+    title: "Bulk Waste Collection & Disposal",
+    description:
+      "Handling large-scale waste efficiently, we offer bulk waste collection for construction sites, office cleanouts, and large residential projects. Our team ensures safe, timely, and eco-friendly disposal.",
   },
 ];
 
@@ -166,12 +182,18 @@ const LandingPage = () => {
             <img
               src={logoIcon || "/placeholder.svg"}
               alt="logo"
-              width="40"
-              height="40"
+              width="60"
+              height="60"
+              color="#15803d"
               className="logo-spin"
             />
           </div>
-          <span className="logo-text">GIGO</span>
+          <span
+            className="logo-text"
+            style={{ fontSize: "30px", color: "#15803d", fontWeight: "bold" }}
+          >
+            GIGO
+          </span>
         </div>
 
         <div
@@ -351,16 +373,6 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-        <div className="testimonial-dots">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === activeTestimonial ? "active" : ""}`}
-              onClick={() => setActiveTestimonial(index)}
-              aria-label={`View testimonial ${index + 1}`}
-            />
           ))}
         </div>
       </div>
