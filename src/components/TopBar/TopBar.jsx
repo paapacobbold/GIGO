@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect, useRef } from "react";
 import { Bell, Search, X, ChevronRight } from "lucide-react";
 import { useUser } from "../../context/UserContext";

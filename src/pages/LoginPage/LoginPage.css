@@ -179,6 +179,27 @@ form {
   border: none;
 }
 
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border-left: 4px solid #ef4444;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 2px;
+}
+
 .login-illustration {
   width: 50%;
   background-color: var(--light-gray);
@@ -194,6 +215,30 @@ form {
   max-width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+/* Spinner styles */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Improved media queries for better responsiveness */
