@@ -145,9 +145,7 @@ const SignupPage = () => {
           </button>
         </form>
 
-        <div className="divider">
-          ---------------------------- OR ----------------------------
-        </div>
+        <div className="divider">---------------- OR ----------------</div>
 
         <button
           className="social-btn google"

@@ -109,7 +109,7 @@ const SettingsSubItem = ({ icon, label, active, href }) => {
   );
 };
 
-const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
+const Sidebar = ({ isDarkMode, activePage }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [settingsOpen, setSettingsOpen] = useState(
@@ -181,12 +181,12 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
 
         <div className="nav-section">
           <p className="nav-section-title">Users</p>
-          <NavItem
+          {/* <NavItem
             icon={<MessageSquare size={18} />}
             label="Chat"
             active={location.pathname === "/chat"}
             onClick={handleNavItemClick}
-          />
+          /> */}
           <NavItem
             icon={<FileUp size={18} />}
             label="Report Waste"
@@ -317,12 +317,12 @@ const Sidebar = ({ isDarkMode, setIsDarkMode, activePage }) => {
           </div>
         </div>
 
-        <div className="theme-toggle-container">
+        {/* <div className="theme-toggle-container">
           <CustomSwitchSelector
             isDarkMode={isDarkMode}
             setIsDarkMode={setIsDarkMode}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

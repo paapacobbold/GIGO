@@ -343,7 +343,6 @@ img {
   position: relative;
   overflow: hidden;
 }
-
 .hero-content {
   flex: 1;
   max-width: 600px;
@@ -373,7 +372,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: slideInRight 1s ease-out;
 }
 
 .hero-image {
@@ -382,10 +380,14 @@ img {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   transition: var(--transition);
+  transform: none !important;
+  object-fit: contain;
+  perspective: none;
+  backface-visibility: visible;
 }
 
 .hero-image:hover {
-  transform: scale(1.02);
+  transform: scale(1.02) !important;
 }
 
 /* Stats Section */

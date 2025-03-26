@@ -17,7 +17,7 @@ import About from "./pages/About/AboutPage";
 import Location from "./pages/LocateFacilities/Location";
 import Recycling from "./pages/RecyclingTips/RecyclingPage";
 import ReportHistory from "./pages/ReportHistory/ReportHistoryPage";
-import ChatPage from "./pages/Chat/ChatPage";
+// import ChatPage from "./pages/Chat/ChatPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import HelpCenter from "./pages/help/HelpCenter";
 import Notfound from "./pages/Notfound/404";
@@ -43,7 +43,7 @@ const App = () => {
       "/facilities": `${appName} | Recycling Facilities`,
       "/recycling-tips": `${appName} | Recycling Tips`,
       "/pickup-schedule": `${appName} | Pickup Schedule`,
-      "/chat": `${appName} | Support Chat`,
+      // "/chat": `${appName} | Support Chat`,
       "/settings": `${appName} | Settings`,
       "/help": `${appName} | Help Center`,
       "/NotFound": `${appName} | Page Not Found`,
@@ -127,14 +127,14 @@ const App = () => {
             </ProtectedRoute>
           }
         /> */}
-        <Route
+        {/* <Route
           path="/chat"
           element={
             <ProtectedRoute>
               <ChatPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/settings"
           element={
